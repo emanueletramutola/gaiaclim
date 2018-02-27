@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <xs:include schemaLocation="commonTypes.xsd"/>
+    <xs:complexType name="DataProcessingAndReporting_Type">
+        <xs:sequence>
+            <xs:element name="dataProcessingMethodsAndAlgorithms" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        A description of the processing used to generate the observation and list of algorithms utilized to derive the resultant value.
+
+                        NOTE:
+                        In hydrology, this would be the
+                        equation(s) defining the rating curve and
+                        any shifts or corrections applied to the
+                        data or the curve.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="processingAnalysisCentre" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Center at which the observation is processed.
+
+                        EXAMPLES:
+                        Chemical analysis, AMDAR processing
+                        center, National Hydrological Service
+                        office.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="temporalReportingPeriod" type="MeaningOfTimeStamp_Type">
+                <xs:annotation>
+                    <xs:documentation>
+                        Time period over which the observed variable is reported.
+
+                        NOTE:
+                        Includes the temporal reporting interval,
+                        plus the meaning of time stamp.
+
+                        EXAMPLES: Hourly, daily, monthly,
+                        seasonal, event-based, 80 seconds
+                        interval during the day, etc. In each case,
+                        the meaning, “beginning, “middle”, or “end” of period is indicated.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="spatialReportingInterval" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Spatial interval at which the observed variable is reported.
+
+                        NOTE: This is applicable only to remote
+                        sensing observations and mobile
+                        platforms in general. For most remotesensing
+                        observations, this will be
+                        redundant with element 6-06.
+                        EXAMPLES:
+                        – An observation from a satellite may be
+                        reported with a spatial resolution of
+                        10 km x 20 km.
+                        – An aircraft may sample every 1 km
+                        along its trajectory ( cf. 6-06), but may
+                        report at a spatial interval of 10 km.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="softwareProcessorAndVersion" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Name and version of the software or processor utilized to derive the element value.
+
+                        EXAMPLES:
+                        Avionics version, retrieval algorithm
+                        version; MCH Database Management
+                        System version 25/10/2013.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="levelOfData" type="LevelOfData_Type" minOccurs="0"/>
+            <xs:element name="dataFormat" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        Description of the format in which the observed variable is being provided.
+
+                        EXAMPLES:
+                        ASCII, BUFR, NASA AMES, HDF, XML,
+                        AMDAR, comma-separated (CSV), tabseparated
+                        (.txt), MCH (for interchange)
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="versionOfDataFormat" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        Version of the data format in which the observed variable is being provided.
+
+                        EXAMPLES:
+                        FM 12–XIV Ext. SYNOP; FM 42-XI Ext.
+                        AMDAR, FM 94-XIV BUFR Version
+                        20.0.0, Radar: ODIM_H5
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="aggregationPeriod" type="MeaningOfTimeStamp_Type">
+                <xs:annotation>
+                    <xs:documentation>
+                        Time period over which individual samples/observations are aggregated.
+
+                        NOTE:
+                        Includes the aggregation interval, plus
+                        the meaning of time stamp.
+
+                        EXAMPLES:
+                        5 minute mean, meaning of time stamp
+                        is “middle of period”;
+                        daily maximum, meaning of time stamp
+                        is “end of period”;
+                        event based, meaning of time stamp is
+                        “beginning of period”.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="referenceTime" type="ReferenceTime_Type"/>
+            <xs:element name="referenceDatum" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Reference datum used to convert observed quantity to reported quantity
+
+                        NOTE 1:
+                        Atmospheric pressure can be reported
+                        as (i) Field elevation Pressure (QFE),
+                        where the reference datum is the
+                        elevation corresponding to the official
+                        elevation of the aerodrome; (ii)
+                        Atmospheric pressure at nautical height
+                        (QNH), where the reference datum is
+                        mean sea level and the pressure altitude
+                        relationship of the ICAO standard
+                        atmosphere is used. Where observed
+                        atmospheric pressure cannot be reduced
+                        to mean sea level, a station should, by
+                        regional agreement, report either the
+                        geopotential of an agreed ‘constant
+                        pressure level’ or the pressure reduced
+                        to an agreed datum for the station. The
+                        level chosen for the station should be
+                        reported in this field. (Ref: WMO-No. 8
+                        3.11.1).
+
+                        NOTE 2:
+                        Hydrology may report a gauge zero
+                        which is the gauge height of zero flow.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="numericalResolution" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Measure of the detail in which a numerical quantity is expressed.
+
+                        NOTE 1:
+                        The resolution of a numerical quantity is
+                        a measure of the detail in which the
+                        quantity is expressed. It can be
+                        expressed as the smallest possible
+                        difference between two numbers. It can
+                        also be expressed as the number of
+                        significant figures of a number, which are
+                        those digits that carry meaning
+                        contributing to its resolution.
+
+                        EXAMPLE: if a measurement resolution
+                        to four decimal places (0.0001) is given
+                        as 12.23 then it might be understood that
+                        only two decimal places of resolution are
+                        available. Stating the result as 12.2300
+                        makes clear that it is precise to four
+                        decimal places (in this case, six
+                        significant figures).
+
+                        NOTE 2: The notion of measurement
+                        resolution is related but must not be
+                        confounded with the uncertainty of an
+                        observation
+
+                        EXAMPLES:
+                        – An anemometer may measure wind
+                        speed with a measurement resolution of
+                        0.1 ms–1 with a 1 Hz scan rate.
+                        Observations may be aggregated to
+                        1-minute values and may be rounded
+                        and reported with a (reduced)
+                        measurement resolution of 1 ms–1.
+                        – A barometer may be capable of
+                        measuring atmospheric pressure with a
+                        readout resolution of 1 hPa and an
+                        uncertainty of 5 hPa (k=2). The data can
+                        be reported to the nearest hPa, however,
+                        the measurement resolution should be
+                        stated as “5 hPa” or “3 significant digits”.
+                        – An ocean thermometer measures
+                        temperature to 0.0001 °C.
+                        – Seawater salinity measured to
+                        0.001 salinity units (derived from
+                        conductivity measurements with a
+                        resolution of 0.01 Sm–1)
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="latencyOfReporting" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        The typical time between completion of the observation or collection of the datum and when the datum is reported.
+
+                        (i) For satellite data, the
+                        “observation” (e.g. a complete image)
+                        can take 20 minutes to generate. Hence
+                        the latency would be the time between
+                        the completion of the image collection,
+                        and when it is available. Typically this
+                        can be 2–3 minutes. Some satellite
+                        products such as SST can take about
+                        10 minutes of processing until it is
+                        available.
+                        (ii) A radar volumetric scan can take
+                        6–10 minutes (in Australia), so the
+                        latency would be the time between the
+                        completion of the scan and when the
+                        data is locally available. In Australia, this
+                        varies between a few seconds to several
+                        minutes depending on delays in data
+                        communications.
+                        (iii) AWS data may have a latency of
+                        1–20 seconds (or considerably more in
+                        some places) between the completion of
+                        the observation and arrival of the data at
+                        a central archive.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:simpleType name="LevelOfData_Type">
+        <xs:annotation>
+            <xs:documentation>
+                Level of data processing
+
+                - CIMO (WMO-No. 8, 2008, Updated 2010)
+                - CEOS (http://www.ceos.org/images/WGISS/Documents/Handbook.pdf)
+
+                NOTE:
+                Pre or Post processing.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Unknown" />
+            <xs:enumeration value="Raw">
+                <xs:annotation>
+                    <xs:documentation>
+                        CEOS: Physical information: Data in their original packets, as received
+                        from a satellite
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="Level 0">
+                <xs:annotation>
+                    <xs:documentation>
+                        CIMO: Analogue/digital electric signals
+
+                        CEOS: Physical information: Reconstructed unprocessed instrument data
+                        at full space time resolution with all available supplemental
+                        information to be used in subsequent processing (e.g., ephemeris,
+                        health and safety) appended.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="Level I">
+                <xs:annotation>
+                    <xs:documentation>
+                        CIMO: Level I data (Primary Data): in general, are instrument readings
+                        expressed in appropriate physical units, and referred to Earth
+                        geographical coordinates. They require conversion to the
+                        normal meteorological variables (identified in Part I, Chapter 1).
+                        Level I data themselves are in many cases obtained from the
+                        processing of electrical signals such as voltages, referred to as
+                        raw data. Examples of these data are satellite radiances and
+                        water-vapour pressure, positions of constant-level balloons,
+                        etc. but not raw telemetry signals. Level I data still require
+                        conversion to the meteorological parameters specified in the
+                        data requirements.
+
+                        CEOS: Physical information: Unpacked, reformatted level 0 data, with all
+                        supplemental information to be used in subsequent processing
+                        appended. Optional radiometric and geometric correction applied to
+                        produce parameters in physical units. Data generally presented as
+                        full time/space resolution. A wide variety of sub level products are
+                        possible.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="Level II">
+                <xs:annotation>
+                    <xs:documentation>
+                        CIMO: Level II Data (Meteorological parameters). They may be
+                        obtained directly from many kinds of simple instruments, or
+                        derived from Level I data. For example, a sensor cannot
+                        measure visibility, which is a Level II quantity; instead, sensors
+                        measure the extinction coefficient, which is a Level I quantity.
+
+                        CEOS: Geophysical information. Retrieved environmental variables (e.g.,
+                        ocean wave height, soil moisture, ice concentration) at the same
+                        resolution and location as the level 1 source data.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="Level III">
+                <xs:annotation>
+                    <xs:documentation>
+                        CIMO: Level III (Initial state parameters) are internally consistent data
+                        sets, generally in grid‑point form obtained from level II data by
+                        applying established initialization procedures.
+                        NOTE: Data exchanged internationally are level II or level III
+                        data.
+
+                        CEOS: Geophysical information. Data or retrieved environmental variables
+                        which have been spatially and/or temporally re-sampled (i.e.,
+                        derived from level 1 or 2 products). Such re-sampling may include
+                        averaging and compositing.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="Level IV">
+                <xs:annotation>
+                    <xs:documentation>
+                        CEOS: Thematic information. Model output or results from analyses of
+                        lower level data (i.e., variables that are not directly measured by
+                        the instruments, but are derived from these measurements).
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="ReferenceTime_Type">
+        <xs:annotation>
+            <xs:documentation>
+                Time base to which date and time stamps refer
+
+                NOTE:
+                The reference time must not be confused
+                with the time zone (which is part of the
+                representation of the time stamp), but
+                indicates what the source of the time
+                stamp is, i.e., to which reference time the
+                time stamps of the observation are
+                aligned.
+
+                EXAMPLES:
+                NIST time server
+                NTP pool project
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Unknown" />
+            <xs:enumeration value="Time Server" />
+            <xs:enumeration value="Radio Clock" />
+            <xs:enumeration value="Manual Comparison" />
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

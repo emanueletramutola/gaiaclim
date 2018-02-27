@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <xs:complexType name="Contact_Type">
+        <xs:annotation>
+            <xs:documentation>
+                Specifies where information about an observation or dataset can be obtained.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="contact" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        Principal contact (Nominated Focal Point, FP) for resource.
+
+                        NOTE: The FP would be able to provide data users with information regarding
+                        individual observing platforms and their observations.
+
+                        EXAMPLES:
+                        Programme or Network Manager, e.g. E-AMDAR Technical Coordinator (TC)
+                        has responsibility for data quality of several airlines’ fleets, has information on
+                        aircraft type/software/known errors etc.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

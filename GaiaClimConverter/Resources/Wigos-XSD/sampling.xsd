@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <xs:include schemaLocation="commonTypes.xsd"/>
+    <xs:complexType name="Sampling_Type">
+        <xs:sequence>
+            <xs:element name="samplingProcedures" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Procedures involved in obtaining a sample.
+
+                        EXAMPLES:
+                        Temperature measurements are made using a XYZ
+                        thermometer and reported results are an average
+                        of 10 measurements made in a given hour.
+                        Aerosols may be sampled with an inlet with sizecutoff
+                        at 2.5 μm and be deposited on a teflon filter.
+                        Manual reading of a liquid-in-glass thermometer
+                        every three hours.
+                        As an exception, an observer may observe the
+                        state of the sky from home rather than at the
+                        station during night.
+                        Rain fall is accumulated during the whole week-end
+                        and distributed evenly over these 2 days.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="sampleTreatment" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Chemical or physical treatment of sample prior to analysis.
+
+                        EXAMPLES:
+                        Homogenization, milling, mixing, drying, sieving,
+                        heating, melting, freezing, evaporation…
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="samplingStrategy" type="SamplingStrategy_Type" minOccurs="0"/>
+            <xs:element name="samplingTimePeriod" type="MeaningOfTimeStamp_Type">
+                <xs:annotation>
+                    <xs:documentation>
+                        The period of time over which a measurement is taken.
+
+                        NOTE:
+                        Includes the sampling time period, plus the
+                        meaning of time stamp (11–03).
+
+                        EXAMPLES:
+                        surface winds sampled every 0.25 s (frequency
+                        4 Hz) (WMO, 2008); surface winds measured once
+                        per hour; Barometric pressure measured once
+                        every 6 minutes; water column height measured
+                        every 15 seconds; water temperature measured
+                        once per hour (NOAA, 2009);
+                        For each example, Time stamp indicates “end of
+                        period”.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="spatialSamplingResolution" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        Spatial resolution refers to the size
+                        of the smallest observable object.
+                        The intrinsic resolution of an
+                        imaging system is determined
+                        primarily by the instantaneous field
+                        of view of the sensor, which is a
+                        measure of the ground area viewed
+                        by a single detector element in a
+                        given instance in time.
+
+                        EXAMPLES:
+                        AVHRR: 1.1 km IFOV s.s.p.
+                        The sample is a point in space or a very small
+                        volume resembling a point, e.g., a temperature
+                        sampled by a thermocouple element: No size to be
+                        reported;
+                        The sample is a line, either straight (e.g., a line of
+                        sight of a DOAS instrument) or curved (e.g., the
+                        humidity sampled by an aircraft in flight). The
+                        ‘length’ of the line is to be reported;
+                        The sample is an area, either rectangular or of any
+                        other shape, e.g., the pixel of a satellite or the
+                        reach of a radar image. The ‘length x length’ of the
+                        area is to be reported;
+                        The sample is a volume, e.g. a water sample or a
+                        well-mixed volume of air sampled by flask. The
+                        ‘length x length x length’ of the volume is to be
+                        reported.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="temporalSamplingInterval" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        Time period between the beginning of consecutive sampling periods.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="diurnalBaseTime" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        Time to which diurnal statistics are referenced.
+
+                        Examples
+                        Rain fall observation is accumulated for 24 hours
+                        up until 0700z, the diurnal base time here is 0700z.
+                        Daily temperature maxima refer to the period 0600
+                        local time, the diurnal base time here is 0600z.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="scheduleOfObservation" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        Schedule of observation
+
+                        EXAMPLES:
+                        AMDAR profiling observations are available from
+                        Zurich airport between 0600 and 1200 local time;
+                        Radio-sondes are collected at a particular station
+                        from January to August on weekdays at 0000z and
+                        1200z
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:simpleType name="SamplingStrategy_Type">
+        <xs:annotation>
+            <xs:documentation>
+                The strategy used to generate the observed variable.
+
+                EXAMPLES:
+                Continuous: global radiation, atmospheric pressure,
+                or continuous ozone monitoring with a UV monitor;
+                Discrete: gas chromatographic analysis of carbon
+                monoxide, radar rainfall;
+                Event: grab water samples, flask sampling of air,
+                etc.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Continuous">
+                <xs:annotation>
+                    <xs:documentation>
+                        Sampling is done continuously, but not necessarily at regular time intervals. Sampling is integrating, i.e., none of
+                        the medium escapes observations.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="Discrete">
+                <xs:annotation>
+                    <xs:documentation>
+                        Sampling is done at regular time intervals for certain sampling periods that are smaller than the time interval.
+                        Sampling is not integrating, i.e., parts of the medium escape observation.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="Event">
+                <xs:annotation>
+                    <xs:documentation>
+                        Sampling is done at irregular time intervals.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

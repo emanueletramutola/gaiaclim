@@ -1,0 +1,141 @@
+<xs:schema xmlns:gmlexr="http://www.opengis.net/gml/3.3/exr" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://def.wmo.int/wigosobs/2015" xmlns:gco="http://www.isotc211.org/2005/gco" xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:om="http://www.opengis.net/om/2.0" xmlns:opm="http://def.wmo.int/opm/2013" xmlns:wigos="http://def.wmo.int/wigosobs/2015">
+	<xs:include schemaLocation="wigos.xsd" />
+	<xs:import namespace="http://www.opengis.net/om/2.0" schemaLocation="http://schemas.opengis.net/om/2.0/observation.xsd" />
+	<xs:import namespace="http://www.opengis.net/gml/3.3/exr" schemaLocation="http://schemas.opengis.net/gml/3.3/extdEncRule.xsd" />
+	<xs:import namespace="http://www.isotc211.org/2005/gmd" schemaLocation="http://schemas.opengis.net/iso/19139/20070417/gmd/gmd.xsd" />
+	<xs:import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd" />
+	<xs:element name="AncillaryMetadata" substitutionGroup="gmd:MD_Metadata" type="wigos:AncillaryMetadataType">
+		<xs:annotation>
+			<xs:documentation>Ancillary metadata about the Observation - including responsible party, official status &amp; use constraints.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="AncillaryMetadataType">
+		<xs:complexContent>
+			<xs:extension base="gmd:MD_Metadata_Type">
+				<xs:sequence>
+					<xs:element maxOccurs="1" minOccurs="0" name="officialStatus" type="xs:boolean">
+						<xs:annotation>
+							<xs:documentation>5-14 Official status of observation.    [Phase 3]</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="AncillaryMetadataPropertyType">
+		<xs:sequence minOccurs="0">
+			<xs:element ref="wigos:AncillaryMetadata" />
+		</xs:sequence>
+		<xs:attributeGroup ref="gml:AssociationAttributeGroup" />
+		<xs:attributeGroup ref="gml:OwnershipAttributeGroup" />
+	</xs:complexType>
+	<xs:element name="ObservationCollection" substitutionGroup="gml:AbstractFeature" type="wigos:ObservationCollectionType">
+		<xs:annotation>
+			<xs:documentation>Each EnvironmentalMonitoringActivity should describe a different observed variable (e.g. humidity, air temperature) from a station/facility. [Phase 1]
+
+INSPIRE Note: This is mappable to the EnvironmentalMonitoringActivity in INSPIRE EF. However the WIGOS implementation is more extensive, and notably contains direct links to the observations attributed to the activity (hasObservation). </xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="ObservationCollectionType">
+		<xs:complexContent>
+			<xs:extension base="gml:AbstractFeatureType">
+				<xs:sequence>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="extension">
+						<xs:annotation>
+							<xs:documentation>This extension point is to facilitate the encoding of any other information for complimentary or local purposes such as complying with legislative frameworks.
+However it should not be expected that any extension information will be appropriately processed, stored or made retrievable from any WIGOS systems or services. [Phase 1]</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:complexContent>
+								<xs:extension base="gml:AbstractMemberType">
+									<xs:sequence>
+										<xs:element ref="gml:AbstractObject" />
+									</xs:sequence>
+								</xs:extension>
+							</xs:complexContent>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="wigosIdentifier" type="xs:anyURI">
+						<xs:annotation>
+							<xs:documentation>A WIGOS Identifier for this object according to the WIGOS identifier scheme. [Phase 1]</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>A name for this ObservationCollection [Phase 1]</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element maxOccurs="1" minOccurs="0" name="description" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>A description of this ObservationCollection [Phase 1]</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="pointOfContact">
+						<xs:annotation>
+							<xs:documentation>Principal contact (Nominated Focal Point, FP) for this resource</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:complexContent>
+								<xs:extension base="gml:AbstractMetadataPropertyType">
+									<xs:sequence>
+										<xs:element minOccurs="0" ref="gmd:CI_ResponsibleParty" />
+									</xs:sequence>
+								<xs:attributeGroup ref="gml:AssociationAttributeGroup" /></xs:extension>
+							</xs:complexContent>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="facility" type="wigos:ObservingFacilityPropertyType">
+						<xs:annotation>
+							<xs:documentation>The primary facility to which an ObservationCollection belongs. [Phase 1]</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="uom" type="gml:ReferenceType">
+						<xs:annotation>
+							<xs:documentation>1-02 Measurement Unit (unit of measure) [Phase 1]</xs:documentation>
+							<xs:appinfo>
+								<gmlexr:targetCodeList>MeasurementUnitType</gmlexr:targetCodeList>
+							</xs:appinfo>
+						</xs:annotation>
+					</xs:element>
+					<xs:element maxOccurs="unbounded" minOccurs="1" name="applicationArea" type="gml:ReferenceType">
+						<xs:annotation>
+							<xs:documentation>The context within, or intended application(s) for which the observation is primarily made or which has/have the most stringent requirements. [Phase 1]</xs:documentation>
+							<xs:appinfo>
+								<gmlexr:targetCodeList>ApplicationAreaType</gmlexr:targetCodeList>
+							</xs:appinfo>
+						</xs:annotation>
+					</xs:element>
+					<xs:element maxOccurs="unbounded" minOccurs="1" name="programAffiliation" type="gml:ReferenceType">
+						<xs:annotation>
+							<xs:documentation>The global, regional or national program/network(s) that the station/platform is associated with. [Phase 1]</xs:documentation>
+							<xs:appinfo>
+								<gmlexr:targetCodeList>ProgramOrNetworkAffiliationType</gmlexr:targetCodeList>
+							</xs:appinfo>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="temporalExtent" type="gml:TimePeriodPropertyType">
+						<xs:annotation>
+							<xs:documentation>1-03 Temporal Extent of the entire Data Series. Note that individual Observations also have a temporal extent described using om:phenomenonTime [Phase 1]</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element maxOccurs="1" minOccurs="0" name="representativeness" type="gml:ReferenceType">
+						<xs:annotation>
+							<xs:documentation>1-05 from codelist Representativeness [Phase 2]</xs:documentation>
+							<xs:appinfo>
+								<gmlexr:targetCodeList>RepresentativenessType</gmlexr:targetCodeList>
+							</xs:appinfo>
+						</xs:annotation>
+					</xs:element>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="observationMember" type="om:OM_ObservationPropertyType" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ObservationCollectionPropertyType">
+		<xs:sequence minOccurs="0">
+			<xs:element ref="wigos:ObservationCollection" />
+		</xs:sequence>
+		<xs:attributeGroup ref="gml:AssociationAttributeGroup" />
+		<xs:attributeGroup ref="gml:OwnershipAttributeGroup" />
+	</xs:complexType>
+</xs:schema>

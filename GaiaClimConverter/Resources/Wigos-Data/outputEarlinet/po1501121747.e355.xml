@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<gaiaClimMetadataType>
+    <observedVariable>
+        <observedVariable-measurand>
+            <domain>Atmospheric</domain>
+            <variable>Altitude</variable>
+            <modeOfObservation>I</modeOfObservation>
+        </observedVariable-measurand>
+        <measurementUnit>
+            <name>meter</name>
+            <abbreviation>m</abbreviation>
+        </measurementUnit>
+        <temporalExtent>StartTime: 2015-01-12T17:47:23; StopTime: 2015-01-12T20:11:02; TemporalExtent:8619 s
+        </temporalExtent>
+        <spatialExtent>from 1330.0m to 14410.0m</spatialExtent>
+        <representativenessOfObservation>mesoscale</representativenessOfObservation>
+    </observedVariable>
+    <observedVariable>
+        <observedVariable-measurand>
+            <domain>Atmospheric</domain>
+            <variable>VerticalResolution</variable>
+            <modeOfObservation>I</modeOfObservation>
+        </observedVariable-measurand>
+        <measurementUnit>
+            <name>meter</name>
+            <abbreviation>m</abbreviation>
+        </measurementUnit>
+        <temporalExtent>StartTime: 2015-01-12T17:47:23; StopTime: 2015-01-12T20:11:02; TemporalExtent:8619 s
+        </temporalExtent>
+        <spatialExtent>from 1330.0m to 14410.0m</spatialExtent>
+        <representativenessOfObservation>mesoscale</representativenessOfObservation>
+    </observedVariable>
+    <observedVariable>
+        <observedVariable-measurand>
+            <domain>Atmospheric</domain>
+            <variable>Extinction</variable>
+            <modeOfObservation>I</modeOfObservation>
+        </observedVariable-measurand>
+        <measurementUnit>
+            <abbreviation>1/m</abbreviation>
+        </measurementUnit>
+        <temporalExtent>StartTime: 2015-01-12T17:47:23; StopTime: 2015-01-12T20:11:02; TemporalExtent:8619 s
+        </temporalExtent>
+        <spatialExtent>from 1330.0m to 14410.0m</spatialExtent>
+        <representativenessOfObservation>mesoscale</representativenessOfObservation>
+    </observedVariable>
+    <observedVariable>
+        <observedVariable-measurand>
+            <domain>Atmospheric</domain>
+            <variable>Backscatter</variable>
+            <modeOfObservation>I</modeOfObservation>
+        </observedVariable-measurand>
+        <measurementUnit>
+            <abbreviation>1/(m*sr)</abbreviation>
+        </measurementUnit>
+        <temporalExtent>StartTime: 2015-01-12T17:47:23; StopTime: 2015-01-12T20:11:02; TemporalExtent:8619 s
+        </temporalExtent>
+        <spatialExtent>from 1330.0m to 14410.0m</spatialExtent>
+        <representativenessOfObservation>mesoscale</representativenessOfObservation>
+    </observedVariable>
+    <observedVariable>
+        <observedVariable-measurand>
+            <domain>Atmospheric</domain>
+            <variable>ErrorExtinction</variable>
+            <modeOfObservation>I</modeOfObservation>
+        </observedVariable-measurand>
+        <measurementUnit>
+            <abbreviation>1/m</abbreviation>
+        </measurementUnit>
+        <temporalExtent>StartTime: 2015-01-12T17:47:23; StopTime: 2015-01-12T20:11:02; TemporalExtent:8619 s
+        </temporalExtent>
+        <spatialExtent>from 1330.0m to 14410.0m</spatialExtent>
+        <representativenessOfObservation>mesoscale</representativenessOfObservation>
+    </observedVariable>
+    <observedVariable>
+        <observedVariable-measurand>
+            <domain>Atmospheric</domain>
+            <variable>ErrorBackscatter</variable>
+            <modeOfObservation>I</modeOfObservation>
+        </observedVariable-measurand>
+        <measurementUnit>
+            <abbreviation>1/(m*sr)</abbreviation>
+        </measurementUnit>
+        <temporalExtent>StartTime: 2015-01-12T17:47:23; StopTime: 2015-01-12T20:11:02; TemporalExtent:8619 s
+        </temporalExtent>
+        <spatialExtent>from 1330.0m to 14410.0m</spatialExtent>
+        <representativenessOfObservation>mesoscale</representativenessOfObservation>
+    </observedVariable>
+    <observedVariable>
+        <observedVariable-measurand>
+            <domain>Atmospheric</domain>
+            <variable>MixingLayerHeight</variable>
+            <modeOfObservation>I</modeOfObservation>
+        </observedVariable-measurand>
+        <measurementUnit>
+            <name>meter</name>
+            <abbreviation>m</abbreviation>
+        </measurementUnit>
+        <temporalExtent>StartTime: 2015-01-12T17:47:23; StopTime: 2015-01-12T20:11:02; TemporalExtent:8619 s
+        </temporalExtent>
+        <spatialExtent>from 1330.0m to 14410.0m</spatialExtent>
+        <representativenessOfObservation>mesoscale</representativenessOfObservation>
+    </observedVariable>
+    <observedVariable>
+        <observedVariable-measurand>
+            <domain>Atmospheric</domain>
+            <variable>DustLayerHeight</variable>
+            <modeOfObservation>I</modeOfObservation>
+        </observedVariable-measurand>
+        <measurementUnit>
+            <name>meter</name>
+            <abbreviation>m</abbreviation>
+        </measurementUnit>
+        <temporalExtent>StartTime: 2015-01-12T17:47:23; StopTime: 2015-01-12T20:11:02; TemporalExtent:8619 s
+        </temporalExtent>
+        <spatialExtent>from 1330.0m to 14410.0m</spatialExtent>
+        <representativenessOfObservation>mesoscale</representativenessOfObservation>
+    </observedVariable>
+    <purposeOfObservation>
+        <applicationArea>Climate monitoring (as undertaken through the Global Climate Observing System, GCOS)
+        </applicationArea>
+        <programmeNetworkAffiliation>
+            <name>EARLINET</name>
+            <definition>European Aerosol Research Lidar Network</definition>
+            <sponsorContributing>GALION; WMO/GAW</sponsorContributing>
+        </programmeNetworkAffiliation>
+    </purposeOfObservation>
+    <stationPlatform>
+        <regionOfOriginOfData>VI</regionOfOriginOfData>
+        <territoryOfOriginOfData>
+            <name>Italy</name>
+            <ISO3CountryCode>ITA</ISO3CountryCode>
+        </territoryOfOriginOfData>
+        <stationPlatformName>Potenza, Italy</stationPlatformName>
+        <stationPlatformType>land station</stationPlatformType>
+        <stationPlatformModel>Lidar</stationPlatformModel>
+        <geospatialLocation>
+            <coordinatesSourceDevice>GPS</coordinatesSourceDevice>
+            <coordinatesReference>WGS84</coordinatesReference>
+        </geospatialLocation>
+        <stationStatus>Operational/Reporting</stationStatus>
+    </stationPlatform>
+    <environment>
+        <siteInformation>Name:Potenza, Italy Country:ITA lat.:40.70000076293945 long.:15.270000457763672 height:760.0
+        </siteInformation>
+    </environment>
+    <instrumentsAndMethodsOfObservation>
+        <sourceOfObservation>Automatic observation</sourceOfObservation>
+        <measurementObservingMethod>Lidar (method: Raman: non-weighted linear fit; error method: method associated to
+            the actual method of optical retrievals; backscatter method: Raman: via backscatter ratio)
+        </measurementObservingMethod>
+        <instrumentSpecifications>EmissionWavelength_nm: 355.0 DetectionWavelength_nm: 355.0 DetectionMode: photon
+            counting, analog, ,
+        </instrumentSpecifications>
+        <instrumentOperatingStatus>Operational</instrumentOperatingStatus>
+        <instrumentControlResult>no changes - in calibration</instrumentControlResult>
+        <instrumentModelAndSerialNumber>Name:MUSA</instrumentModelAndSerialNumber>
+        <statusOfObservation>Primary</statusOfObservation>
+        <exposureOfInstruments>Class 1</exposureOfInstruments>
+    </instrumentsAndMethodsOfObservation>
+    <sampling>
+        <samplingProcedures>Measurements are performed using Multiwavelenght/Raman/elastic lidar techniques; products
+            are vertical profiles aerosol backscattering and extinction coefficients at the available wavelengths.
+        </samplingProcedures>
+        <sampleTreatment>Laser axis vs telescope axis alignment</sampleTreatment>
+        <samplingStrategy>Discrete</samplingStrategy>
+        <spatialSamplingResolution>ResolutionRaw_meter: 60.0 ResolutionEvaluated: see variable VerticalResolution
+        </spatialSamplingResolution>
+        <temporalSamplingInterval>ShotsAveraged: 164400 StartDate: 2015-01-12T17:47:23 StopTime: 2015-01-12T20:11:02
+        </temporalSamplingInterval>
+        <scheduleOfObservation>Aerosol measurements are perfumed on a systematic bias there times a week, on Monday and
+            Thursday 30 minutes after the sunset, on Thursday at 14 local solar time.
+        </scheduleOfObservation>
+    </sampling>
+    <dataProcessingAndReporting>
+        <processingAnalysisCentre>Earlinet</processingAnalysisCentre>
+        <dataFormat>NetCDF-3/CDM</dataFormat>
+        <referenceTime>Time Server</referenceTime>
+        <numericalResolution>Variable depending on the SNR of each lidar system at the different wavelengths
+        </numericalResolution>
+    </dataProcessingAndReporting>
+    <dataQuality>
+        <uncertaintyOfMeasurement>ErrorExtinction - min: 2.6754424E-7, alt: 1750.0 - max: 4.5924485E-6, alt: 1450.0
+        </uncertaintyOfMeasurement>
+        <qualityFlag>
+            <qualityFlag_OGC>Missing</qualityFlag_OGC>
+        </qualityFlag>
+        <qualityFlaggingSystem>Other quality flagging system</qualityFlaggingSystem>
+        <traceability>Traceable to other standard</traceability>
+    </dataQuality>
+    <ownershipAndDataPolicy>
+        <dataPolicyUseConstraints>WMOAdditional</dataPolicyUseConstraints>
+    </ownershipAndDataPolicy>
+    <contact/>
+</gaiaClimMetadataType>

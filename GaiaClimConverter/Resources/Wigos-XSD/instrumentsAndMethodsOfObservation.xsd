@@ -1,0 +1,407 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <xs:include schemaLocation="commonTypes.xsd"/>
+    <xs:complexType name="InstrumentsAndMethodsOfObservation_Type">
+        <xs:sequence>
+            <xs:element name="sourceOfObservation" type="SourceOfObservation_Type"/>
+            <xs:element name="measurementObservingMethod" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        The method of measurement/observation used.
+
+                        EXAMPLES:
+                        Temperature can be determined using
+                        different principles: liquid in glass;
+                        mechanical; electrical resistance; thermistor;
+                        thermocouple. Likewise, humidity is
+                        determined in AMDAR as amass mixing ratio.
+                        Several chemical variables can be
+                        determined using infrared absorption
+                        spectroscopy.
+                        In hydrology, stage would be observed using
+                        a staff gauge, electric tape, pressure
+                        transducer, gas bubbler, or acoustics.
+                        Examples of satellite observation principles:
+                        Cross-nadir scanning IR sounder; MW
+                        imaging/sounding radiometer, conical
+                        scanning, etc.
+                        Visual observation of weather, cloud type,
+                        etc.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="instrumentSpecifications" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        Intrinsic capability of the measurement/observing method to measure the designated element,
+                        including range, stability, precision, etc.
+
+                        NOTE 1:
+                        The metadata record can be "not available".
+
+                        NOTE 2:
+                        Includes the Upper limit of operational range
+                        and the Lower limit of operational range
+
+                        EXAMPLES:
+                        1) Barometer measurement range 800–1100
+                        hPa (i.e. unsuitable for some mountain
+                        ranges, Mt Everest ~300hPa)
+                        2) Maximum distance a human observer can
+                        observe given the topography.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="instrumentOperatingStatus" type="InstrumentOperatingStatus_Type" minOccurs="0" />
+            <xs:element name="verticalDistanceOfSensor" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Vertical distance of the sensor from a (specified) reference level such as local ground, or deck of a marine platform at the point where the sensor is located; or sea surface.
+
+                        NOTE 1:
+                        The reference surface (generally a surface
+                        which will strongly influence the observation)
+                        must be specified.
+
+                        NOTE 2:
+                        Away from center of earth, positive. Negative
+                        values indicate position below reference
+                        surface.
+
+                        EXAMPLES:
+                        i) Air temperature: height of the
+                        temperature sensor is 1.50 m above ground
+                        surface (station level).
+                        ii) Surface wind: 10.0 m above ground
+                        surface (station level)
+                        iii) Soil temperature: 0.50 m below soil
+                        surface;
+                        iv) Ship: Visual Obs Height: 22.0 m a.s.l.
+                        v) Weather Watch Radar: Warruwi AU
+                        24.3 m above ground surface (see 7-07)
+                        vi) Transmissometer 2.55 above runway
+                        surface
+                        vii) depth of buoy relative to lowest
+                        astronomical tide
+                        viii) Pressure sensor: vertical distance above
+                        mean sea level
+                        ix) For satellites, e.g., geostationary orbit at
+                        36000 km above geoid, or LEO at 800 km
+                        above geoid
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="configurationOfInstrumentation" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Description of any shielding or configuration/setup of the instrumentation or auxiliary equipment needed to make the observation or to reduce the impact of extraneous influences on the observation.
+
+                        EXAMPLES:
+                        shelter, temperature control, etc.
+                        Internal volume: [m3]
+                        Aspirated: [Natural/forced/na]
+                        Aspiration rate: m3s-1
+                        Shielding from: [radiation/precipitation/
+                        wind/etc.]
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="instrumentControlSchedule" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Description of schedule for calibrations or verification of instrument.
+
+                        EXAMPLE:
+                        Every year on first week of February
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="instrumentControlResult" type="InstrumentControlResult_Type" minOccurs="0"/>
+            <xs:element name="instrumentModelAndSerialNumber" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Details of manufacturer, model number, serial number and firmware version if applicable.
+
+                        NOTE 1:
+                        Record "not available"
+
+                        NOTE 2:
+                        Use the following formats: Instrument
+                        manufacturer: [free text]
+                        Instrument model: [free text]
+                        Instrument serial number: [free text]
+                        Firmware version: [free text]
+
+                        EXAMPLE: Vaisala PTB330B G2120006
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="instrumentMaintenanceSchedule" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        A description of schedule maintenance that is performed on an instrument.
+
+                        EXAMPLE:
+                        Daily cleaning of a radiation sensor.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="maintenanceParty" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Identifier of the organization or individual who performed the maintenance activity.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="geospatialLocation" type="GeospatialLocation_Instruments_Type" minOccurs="0"/>
+            <xs:element name="maintenanceActivity" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Description of maintenance performed on instrument.
+
+                        NOTE:
+                        A log of actual maintenance activity, both planned and corrective
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="statusOfObservation" type="StatusOfObservation_Type" minOccurs="0"/>
+            <xs:element name="exposureOfInstruments" type="ExposureOfInstruments_Type" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:simpleType name="SourceOfObservation_Type">
+        <xs:annotation>
+            <xs:documentation>
+                The source of the dataset described by the metadata.
+
+                NOTE:
+                Refer to the Code table
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Automatic observation">
+                <xs:annotation>
+                    <xs:documentation>
+                        Automatically produced measurement result
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="Manual observation">
+                <xs:annotation>
+                    <xs:documentation>
+                        Manual reading of instrument
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="Visual observation">
+                <xs:annotation>
+                    <xs:documentation>
+                        Human, non-instrumented observation
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="InstrumentOperatingStatus_Type">
+        <xs:annotation>
+            <xs:documentation>
+                The status of an instrument with respect to its operation.
+
+                NOTE:
+                To be recorded by data providers for each individual observation
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Operational">
+                <xs:annotation>
+                    <xs:documentation>
+                        The instrument is declared operational and subject to routine maintenance
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="Testing">
+                <xs:annotation>
+                    <xs:documentation>
+                        The instrument is deployed for testing purposes and the information provided may not be reliable
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="Not in service">
+                <xs:annotation>
+                    <xs:documentation>
+                        The instrument is deployed but presently not in service
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="InstrumentControlResult_Type">
+        <xs:annotation>
+            <xs:documentation>
+                The result of an instrument control check, including date, time, location, standard type and period of validity.
+
+                NOTE 1:
+                For the result of control check code table 5-
+                08 is to be used
+
+                NOTE 2:
+                record even if "not available"
+
+                NOTE 3:
+                Information should contain at least the
+                following elements:
+                Standard type: [International, Primary,
+                Secondary, Reference, Working, Transfer,
+                Travelling, collective]
+                Standard name: [free text]
+                Standard reference: [serial number or
+                equivalent]
+                Within verification limit [Y/N]
+
+                NOTE 4:
+                Can be implemented with a URI pointing to a
+                document containing this information
+
+                EXAMPLE:
+                20140207 15:30 UTC, travelling standard,
+                &lt;name&gt;, &lt;S/N&gt;, field calibration, result: in
+                calibration, validity: 4 years
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="no changes - in calibration">
+                <xs:annotation>
+                    <xs:documentation>
+                        Instrument verified and found to be in calibration
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="no changes - out of calibration">
+                <xs:annotation>
+                    <xs:documentation>
+                        Instrument checked and found to be out of calibration; no changes to calibration function
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="no changes – calibration unknown">
+                <xs:annotation>
+                    <xs:documentation>
+                        Instrument visited but calibration could not be carried out
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="recalibrated - in calibration">
+                <xs:annotation>
+                    <xs:documentation>
+                        Instrument checked and found to be out of calibration; instrument recalibrated (calibration function changed)
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="GeospatialLocation_Instruments_Type">
+        <xs:annotation>
+            <xs:documentation>
+                Geospatial location of instrument/sensor.
+
+                NOTE 1:
+                Geographic location of instrument such as
+                airfield anemometer or transmissometer.
+
+                NOTE 2:
+                This element comprises 3 entities, the
+                coordinates (Lat/Long/Alt), the
+                "geopositioning method" (code table 11-01)
+                which produced the coordinates, as well as
+                the "geospatial reference system" (code table
+                11-02) used.
+
+                EXAMPLES:
+                1) Melbourne Airport AU (East anemometer)
+                –37.6602 N, 144.8443 E, 122.00 m amsl.
+                2) relative position of wind sensor aboard
+                ship
+                3) 30 km upstream of river mouth
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="coordinatesSourceDevice" type="CoordinatesSourceDevice_Type" />
+            <xs:element name="coordinatesReference" type="CoordinatesReference_Type" />
+        </xs:sequence>
+    </xs:complexType>
+    <xs:simpleType name="StatusOfObservation_Type">
+        <xs:annotation>
+            <xs:documentation>
+                Official status of observation
+
+                NOTE:
+                A binary flag
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Primary">
+                <xs:annotation>
+                    <xs:documentation>
+                        The primary or official observation of the observed variable
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="Additional">
+                <xs:annotation>
+                    <xs:documentation>
+                        Additional or supplemented observation of the observed variable
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="ExposureOfInstruments_Type">
+        <xs:annotation>
+            <xs:documentation>
+                The degree to which an instrument is affected by external influences and reflects the value of the observed variable.
+
+                NOTE: The exposure of an instrument results
+                from joint appraisal of the environment,
+                measurement interval and exposure against
+                the requirements of some particular
+                application. Expressed in terms of code table.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Class 1">
+                <xs:annotation>
+                    <xs:documentation>
+                        exposure of instrument allows reference level measurements
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="Class 2">
+                <xs:annotation>
+                    <xs:documentation>
+                        exposure of instrument has small or infrequence influence on measurement
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="Class 3">
+                <xs:annotation>
+                    <xs:documentation>
+                        exposure of instrument leads to increased uncertainty or occasional invalid measurements
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="Class 4">
+                <xs:annotation>
+                    <xs:documentation>
+                        exposure of instrument leads to high uncertainty or regular invalid measurements
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="Class 5">
+                <xs:annotation>
+                    <xs:documentation>
+                        exposure of instrument leads to invalid measurements
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

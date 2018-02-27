@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wigos:WIGOSMetadataRecord xmlns:wigos="http://def.wmo.int/wigosobs/2015" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gco="http://www.isotc211.org/2005/gco" xmlns:om="http://www.opengis.net/om/2.0" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:sam="http://www.opengis.net/sampling/2.0" xmlns:sams="http://www.opengis.net/samplingSpatial/2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://def.wmo.int/wigosobs/2015 ../wigos.xsd" gml:id="wmr1">
+	<wigos:wigosIdentifier>http://wigos.wmo.int/TBD</wigos:wigosIdentifier>
+	<wigos:name>Example metadata record</wigos:name>
+	<wigos:description>This is an example WIGOS record. It contains several object types and covers the elements required for Phase 1</wigos:description>
+	<!-- this is the observing facility this record belongs to-->
+	<wigos:observingFacilityId>http://wigos.wmo.int/a-b-c-d</wigos:observingFacilityId>
+	<!-- this is the owner/creator of the record -->
+	<wigos:recordOwner xlink:href="http://linkToResponsibleParty"/>
+	<!-- this is a definition of an Observing Facility (e.g. a weather station) -->
+	<wigos:facilityDefinition>
+		<wigos:ObservingFacility gml:id="observingFacility1">
+			<!-- every facility has an identfier, a name and a description (optional)-->
+			<!-- 3-06 station/platform unique identifier -->
+			<wigos:wigosIdentifier>http://wigos.wmo.int/a-b-c-d</wigos:wigosIdentifier>
+			<!-- 3.03 station/platform name -->
+			<wigos:name>MELBOURNE (OLYMPIC PARK)</wigos:name>
+			<wigos:description>Source of Melbourne weather observations</wigos:description>
+			<!-- further detail may be provided under Additional Description -->
+			<wigos:additionalDescription>Melbourne (Olympic Park) opened in November 2013 and has since superseded Melbourne La Trobe Street observation station which closed in January 2015</wigos:additionalDescription>
+			<wigos:onlineResource><gmd:CI_OnlineResource>
+				<gmd:linkage><gmd:URL>//www.bom.gov.au/vic/observations/melbournemap.shtml</gmd:URL></gmd:linkage>
+			</gmd:CI_OnlineResource></wigos:onlineResource>
+			<!-- 3-07 geospatial location and positioning method -->
+			<wigos:geospatialLocation>
+				<wigos:TimestampedLocation>
+					<wigos:validTimePeriod>
+						<gml:TimePeriod gml:id="vtp1">
+							<gml:beginPosition>2013-11-01T00:00:00Z</gml:beginPosition>
+							<gml:endPosition/>
+						</gml:TimePeriod>
+					</wigos:validTimePeriod>
+					<wigos:location>
+						<gml:Point srsName="http://www.opengis.net/def/crs/EPSG/0/4979" gml:id="p1">
+							<gml:pos>-37.8255 144.9816 7.53</gml:pos>
+						</gml:Point>
+					</wigos:location>
+				</wigos:TimestampedLocation>
+			</wigos:geospatialLocation>
+			<wigos:geopositioningMethod/>
+			<wigos:responsibleParty>
+				<!-- details of the organisation responsible for the facility -->
+				<gmd:CI_ResponsibleParty>
+					<gmd:organisationName/>
+					<gmd:contactInfo>
+						<gmd:CI_Contact>
+							<gmd:phone/>
+							<gmd:address/>
+							<gmd:onlineResource/>
+						</gmd:CI_Contact>
+					</gmd:contactInfo>
+					<gmd:role>
+						<gmd:CI_RoleCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists#CI_RoleCode" codeListValue="custodian"/>
+					</gmd:role>
+				</gmd:CI_ResponsibleParty>
+			</wigos:responsibleParty>
+			<!-- 3-01 region of origin -->
+			<wigos:wmoRegion xlink:href="SelectedFromCodelist"/>
+			<!-- 3-02 territory of origin -->
+			<wigos:territoryName xlink:href="SelectedFromCodelist"/>
+			<!-- 3-09 Station Status -->
+			<wigos:reportingStatus xlink:href="SelectedFromCodelist"/>
+			<wigos:facilityLog>
+				<!-- the log for the facility can have any number of entries (Event Reports) to record information about the facility - note, detailed information about equipment at the facilty is recorded against Equipment -->
+				<wigos:FacilityLog gml:id="f1">
+					<wigos:logEntry>
+						<wigos:EventReport gml:id="ev1">
+							<wigos:datetime>2015-10-01T00:00:00Z</wigos:datetime>
+							<wigos:author/>
+							<wigos:description/>
+							<wigos:additionalComments/>
+						</wigos:EventReport>
+					</wigos:logEntry>
+					<wigos:logEntry>
+						<wigos:EventReport gml:id="ev2">
+							<wigos:datetime>2013-01-10T00:00:00Z</wigos:datetime>
+							<wigos:author/>
+							<wigos:description/>
+							<wigos:additionalComments/>
+						</wigos:EventReport>
+					</wigos:logEntry>
+				</wigos:FacilityLog>
+			</wigos:facilityLog>
+		</wigos:ObservingFacility>
+	</wigos:facilityDefinition>
+	<wigos:equipmentDefinition>
+		<wigos:Equipment gml:id="eq1">
+			<gml:identifier codeSpace="wigos.wmo.int">http://wigos.wmo.int/a-b-c-d</gml:identifier>
+			<wigos:wigosIdentifier>http://wigos.wmo.int/a-b-c-d</wigos:wigosIdentifier>
+			<wigos:name>My Equipment e.g. an instrument</wigos:name>
+			<wigos:description>A short description of the instrument</wigos:description>
+			<wigos:additionalDescription>More descriptive information about the instrument</wigos:additionalDescription>
+			<wigos:onlineResource><gmd:CI_OnlineResource>
+				<gmd:linkage><gmd:URL>link to an online reference or document about the instrument or instrument type</gmd:URL></gmd:linkage>
+			</gmd:CI_OnlineResource> </wigos:onlineResource>
+			<!-- geospatial location of the equipment, along with a spatial reference system. EPSG 4979 is global latitude (degrees), longitude (degrees), height (metres) -->
+			<wigos:geospatialLocation>
+				<wigos:TimestampedLocation>
+					<wigos:validTimePeriod>
+						<gml:TimePeriod gml:id="vtp2">
+							<gml:beginPosition>2013-11-01T00:00:00Z</gml:beginPosition>
+							<gml:endPosition/>
+						</gml:TimePeriod>
+					</wigos:validTimePeriod>
+					<wigos:location>
+						<gml:Point srsName="http://www.opengis.net/def/crs/EPSG/0/4979" gml:id="p2">
+							<gml:pos>-37.8255 144.9816 7.53</gml:pos>
+						</gml:Point>
+					</wigos:location>
+				</wigos:TimestampedLocation>
+			</wigos:geospatialLocation>
+			<wigos:geopositioningMethod/>
+			<!-- from codelist? -->
+			<wigos:responsibleParty>
+				<gmd:CI_ResponsibleParty>
+					<gmd:role/>
+				</gmd:CI_ResponsibleParty>
+			</wigos:responsibleParty>
+			<!-- 5-03 Instrument specifications (instrument capability and specification link)-->
+			<wigos:instrumentCapability/>
+			<wigos:specificationLink/>
+			<wigos:modelNumber/>
+			<wigos:serialNumber/>
+			<wigos:manufacturer/>
+			<wigos:firmwareVersion/>
+			<wigos:equipmentLog>
+				<wigos:EquipmentLog gml:id="elog1">
+					<!-- the EquipmentLog may contain ControlCheckReports (e.g. calibration check) or Maintenance Reports (e.g. repair). Any number of these log entries may be provided. -->
+					<wigos:logEntry>
+						<wigos:MaintenanceReport gml:id="m1">
+							<wigos:datetime>2014-11-03T12:45:00Z</wigos:datetime>
+							<wigos:author/>
+							<wigos:description/>
+							<wigos:additionalComments/>
+							<wigos:maintenanceParty>
+								<gmd:CI_ResponsibleParty>
+									<gmd:role/>
+								</gmd:CI_ResponsibleParty>
+							</wigos:maintenanceParty>
+						</wigos:MaintenanceReport>
+					</wigos:logEntry>
+					<wigos:logEntry>
+						<wigos:ControlCheckReport gml:id="c1">
+							<wigos:datetime>2015-11-06T10:10:00Z</wigos:datetime>
+							<wigos:author/>
+							<wigos:description/>
+							<wigos:additionalComments/>
+						</wigos:ControlCheckReport>
+					</wigos:logEntry>
+				</wigos:EquipmentLog>
+			</wigos:equipmentLog>
+		</wigos:Equipment>
+	</wigos:equipmentDefinition>
+	<wigos:collectionDefinition>
+		<wigos:ObservationCollection gml:id="oc1">
+			<gml:identifier codeSpace="wigos.wmo.int">http://wigos.wmo.int/a-b-c-d</gml:identifier>
+			<wigos:wigosIdentifier/>
+			<wigos:name/>
+			<wigos:description/>
+			<wigos:pointOfContact>
+				<gmd:CI_ResponsibleParty>
+					<gmd:role/>
+				</gmd:CI_ResponsibleParty>
+			</wigos:pointOfContact>
+			<wigos:facility/>
+			<!-- 1-02 Unit of Measure from codelist-->
+			<wigos:uom/>
+			<!-- 2-01 Application area from codelist-->
+			<wigos:applicationArea/>
+			<!-- program or network affiliation-->
+			<wigos:programAffiliation/>
+			<wigos:temporalExtent/>
+			<wigos:observationMember xlink:href="#obs1"/>
+			<wigos:observationMember xlink:href="#obs2"/>
+		</wigos:ObservationCollection>
+	</wigos:collectionDefinition>
+	<wigos:observationDefinition>
+		<om:OM_Observation gml:id="obs1">
+			<gml:identifier codeSpace="wigos.wmo.int">http://wigos.wmo.int/a-b-c-d</gml:identifier>
+			<!-- 1-03 the temporal extent of a series of observations is described in om:phenomenonTime -->
+			<om:metadata>
+				<wigos:AncillaryMetadata>
+					<!-- 9-01 Supervising organisation -->
+					<gmd:contact/>
+					<gmd:dateStamp/>
+					<gmd:identificationInfo/>
+					<!-- 9-02 Data Policy - use constraints -->
+					<gmd:metadataConstraints>
+						<gmd:MD_Constraints>
+							<gmd:useLimitation>
+								<gco:CharacterString>Document use limitations here</gco:CharacterString>
+							</gmd:useLimitation>
+						</gmd:MD_Constraints>
+					</gmd:metadataConstraints>
+					<wigos:officialStatus>true</wigos:officialStatus>
+				</wigos:AncillaryMetadata>
+			</om:metadata>
+			<om:phenomenonTime>
+				<gml:TimePeriod gml:id="t2">
+					<gml:beginPosition/>
+					<gml:endPosition/>
+				</gml:TimePeriod>
+			</om:phenomenonTime>
+			<om:resultTime/>
+			<om:validTime/>
+			<om:procedure>
+			<!-- Process contains the deployment, sampling, processing and reporting -->
+				<wigos:Process gml:id="proc1">
+					<wigos:deployment>
+						<wigos:Deployment gml:id="dep1">
+							<!-- time period this deployment describes -->
+							<wigos:deploymentPeriod/>
+							<!-- 5-05 Vertical distance of sensor (heightAboveLocalReferenceSurface & referenceSurfaceDescription-->
+							<wigos:heightAboveLocalReferenceSurface uom="m">2.0</wigos:heightAboveLocalReferenceSurface>
+							<wigos:localReferenceSurfaceDescription/>
+							<!-- Equipment (instrument, sensor) used during this deployment -->
+							<wigos:deployedEquipment xlink:href="#eq1"/>
+							<!-- Facility (station) where this deployment is -->
+							<wigos:deployedAt xlink:href="#of1"/>
+						</wigos:Deployment>
+					</wigos:deployment>
+					<wigos:sampling>
+						<wigos:Sampling>
+							<!-- 6-03 sampling strategy -->
+							<wigos:samplingStrategy xlink:href="linkToTermInCodelist"/>
+							<wigos:diurnalBaseTime>00:00:00Z</wigos:diurnalBaseTime>
+							<!-- uses xsd:time format -->
+							<wigos:scheduleOfObservation>Monday to Sunday , 00:00 to 00:00 , every 30 minutes</wigos:scheduleOfObservation>
+							<wigos:sourceOfObservation xlink:href="linkToTermInCodelist"/>
+							<wigos:temporalSamplingInterval>PT30M</wigos:temporalSamplingInterval>
+							<!-- uses xsd:duration format -->
+						</wigos:Sampling>
+					</wigos:sampling>
+					<wigos:processing>
+						<wigos:Processing>
+							<!-- 5-02 measurement/observing method -->
+							<wigos:observingMethod xlink:href="linkToTermInCodelist"/>
+						</wigos:Processing>
+					</wigos:processing>
+					<wigos:reporting>
+						<wigos:Reporting>
+							<!-- 7-03 temporal reporting period -->
+							<wigos:temporalReportingPeriod>P1D</wigos:temporalReportingPeriod>
+							<!-- 7-04 spatial reporting interval -->
+							<wigos:spatialReportingInterval uom="m">20</wigos:spatialReportingInterval>
+						</wigos:Reporting>
+					</wigos:reporting>
+				</wigos:Process>
+			</om:procedure>
+			<!-- 1-01. The observed property (variable/measurand) from codelist-->
+			<om:observedProperty xlink:href="linkToTermInCodelist(e.g. temperature)"/>
+			<!-- 1-04 the feature of interest is a sampling feature describing the georeferenced volume ( or area, line or point) covered by the observations -->
+			<om:featureOfInterest>
+				<sams:SF_SpatialSamplingFeature gml:id="sf">
+					<sam:sampledFeature nilReason="unknown"/>
+					<sams:shape>
+						<gml:Point gml:id="p3">
+							<gml:pos srsName="http://www.opengis.net/def/crs/EPSG/0/4979">-37.8255 144.9816 7.53</gml:pos>
+						</gml:Point>
+					</sams:shape>
+				</sams:SF_SpatialSamplingFeature>
+			</om:featureOfInterest>
+			<om:result/>
+		</om:OM_Observation>
+	</wigos:observationDefinition>
+	<!-- another observation
+	<observationDefinition></observationDefinition>
+     -->
+</wigos:WIGOSMetadataRecord>

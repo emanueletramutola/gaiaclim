@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified"  version="0.1">
+    <xs:include schemaLocation="observedVariable.xsd"/>
+    <xs:include schemaLocation="purposeOfObservation.xsd"/>
+    <xs:include schemaLocation="stationPlatform.xsd"/>
+    <xs:include schemaLocation="environment.xsd"/>
+    <xs:include schemaLocation="instrumentsAndMethodsOfObservation.xsd"/>
+    <xs:include schemaLocation="sampling.xsd"/>
+    <xs:include schemaLocation="dataProcessingAndReporting.xsd"/>
+    <xs:include schemaLocation="dataQuality.xsd"/>
+    <xs:include schemaLocation="ownershipAndDataPolicy.xsd"/>
+    <xs:include schemaLocation="contact.xsd"/>
+    <xs:annotation>
+        <xs:documentation>Gaia Clim Xml Schema Version  1.0</xs:documentation>
+    </xs:annotation>
+    <xs:element name="gaiaClimMetadata" type="GaiaClimMetadata_Type">
+        <xs:annotation>
+            <xs:documentation/>
+        </xs:annotation>
+    </xs:element>
+    <xs:complexType name="GaiaClimMetadata_Type">
+        <xs:sequence>
+            <xs:element name="observedVariable" type="ObservedVariable_Type" minOccurs="1" maxOccurs="unbounded"/>
+            <xs:element name="purposeOfObservation" type="PurposeOfObservation_Type"/>
+            <xs:element name="stationPlatform" type="StationPlatform_Type"/>
+            <xs:element name="environment" type="Environment_Type"/>
+            <xs:element name="instrumentsAndMethodsOfObservation" type="InstrumentsAndMethodsOfObservation_Type"/>
+            <xs:element name="sampling" type="Sampling_Type"/>
+            <xs:element name="dataProcessingAndReporting" type="DataProcessingAndReporting_Type"/>
+            <xs:element name="dataQuality" type="DataQuality_Type"/>
+            <xs:element name="ownershipAndDataPolicy" type="OwnershipAndDataPolicy_Type"/>
+            <xs:element name="contact" type="Contact_Type"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

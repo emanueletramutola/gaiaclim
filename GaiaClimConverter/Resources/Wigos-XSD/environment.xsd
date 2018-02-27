@@ -1,0 +1,568 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <xs:annotation>
+        <xs:documentation>
+            Describes the geographical environment within which the observation is made. It also provides an unstructured
+            element for additional metainformation that is considered relevant for adequate use of the observations and
+            that is not captured anywhere else in the standard.
+        </xs:documentation>
+    </xs:annotation>
+    <xs:complexType name="Environment_Type">
+        <xs:sequence>
+            <xs:element name="surfaceCover" type="SurfaceCover_Type" minOccurs="0"/>
+            <xs:element name="surfaceCoverClassificatioScheme" type="SurfaceCoverClassificatioScheme_Type" minOccurs="0"/>
+            <xs:element name="topographyOrBathymetry" type="TopographyOrBathymetry_Type" minOccurs="0"/>
+            <xs:element name="eventsAtStationPlatform" type="EventsAtStationPlatform_Type" minOccurs="0"/>
+            <xs:element name="siteInformation" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Non-formalized information about the location and its surroundings at which an observation is
+                        made and that may influence it.
+
+                        NOTE 1: This information may be frequently changing (for example ocean debris impacting buoys).
+
+                        NOTE 2: In hydrology, description and dating of activities occurring in
+                        the basin that can affect the observed discharge, e.g., construction of
+                        a regulation structure upstream of the gauging location that
+                        significantly affects the hydrological regime, inter-basin diversion of
+                        water into or from the basin upstream of the gauging location,
+                        significant change in consumptive use, land cover or land use.
+
+                        EXAMPLES:
+                        maps, plans, photographs, descriptions and other unique site
+                        information that is difficult to express in words or that cannot easily be
+                        quantified.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="SurfaceCover_Type">
+        <xs:annotation>
+            <xs:documentation>
+                The observed (bio)physical cover on the Earth’s surface in the vicinity of the observation.
+
+                NOTE 1:
+                To be applied to 3 different geographic scales of the vicinity of the
+                observation, namely horizontal radii of &lt;100 m, of 100 m to 3 km, and
+                of 3 km to 100 km.
+
+                NOTE 2:
+                Surface cover or land cover is distinct from land use despite the two
+                terms often being used interchangeably. Land use is a description of
+                how people utilize the land and socio-economic activity – urban and
+                agricultural land uses are two of the most commonly known land use
+                classes. At any one point or place, there may be multiple and
+                alternate land uses, the specification of which may have a political
+                dimension (Wikipedia, 2013).
+
+                NOTE 3:
+                There are various classification methods for ‘land cover’. The MODIS
+                product MCD12Q1 provides 5 different classifications on 500 m
+                resolution grid
+                (https://lpdaac.usgs.gov/products/modis_products_table/mcd12q1).
+                These include the IGBP, UMD, LAI/fPAR, NPP and PFT
+                classifications.
+
+                NOTE 4:
+                An alternative approach is the ‘Land Cover Classification System’
+                (LCCS) adopted by the Food and Agriculture Organization of the
+                United Nations. Translation of other systems to LCCS has been
+                explored by Herold et al. (2009). Eight major land cover types are
+                identified during the first, dichotomous classification phase. These are
+                refined in a subsequent so-called Modular-Hierarchical Phase, in
+                which land cover classes are created by the combination of sets of
+                pre-defined classifiers. These classifiers are tailored to each of the
+                eight major land cover types. This process can be supported by
+                software (http://www.glcn.org/sof_7_en.jsp) or manually using a field
+                log sheet
+                (http://commons.wikimedia.org/wiki/File:LCCS_field_protokoll.png)
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="landCoverTypes_IGBP" type="LandCoverTypes_IGBP_Type" minOccurs="0" />
+            <xs:element name="landCoverTypes_UMD" type="LandCoverTypes_UMD_Type" minOccurs="0" />
+            <xs:element name="landCoverTypes_LAI_fPAR" type="landCoverTypes_LAI_fPAR_Type" minOccurs="0" />
+            <xs:element name="landCoverTypes_NPP" type="landCoverTypes_NPP_Type" minOccurs="0" />
+            <xs:element name="landCoverTypes_PFT" type="landCoverTypes_PFT_Type" minOccurs="0" />
+            <xs:element name="landCoverTypes_LCCS" type="landCoverTypes_LCCS_Type" minOccurs="0" />
+        </xs:sequence>
+    </xs:complexType>
+    <xs:simpleType name="LandCoverTypes_IGBP_Type">
+        <xs:annotation>
+            <xs:documentation>
+                None of the codes in the table are applicable in the context of this particular observation (nilReason)
+
+                Cf. https://lpdaac.usgs.gov/products/modis_products_table/mcd12q1
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Not applicable" />
+            <xs:enumeration value="Water" />
+            <xs:enumeration value="Evergreen Needleleaf forest" />
+            <xs:enumeration value="Evergreen Broadleaf forest" />
+            <xs:enumeration value="Deciduous Needleleaf forest" />
+            <xs:enumeration value="Deciduous Broadleaf forest" />
+            <xs:enumeration value="Mixed forest" />
+            <xs:enumeration value="Closed shrublands" />
+            <xs:enumeration value="Open shrublands" />
+            <xs:enumeration value="Woody savannas" />
+            <xs:enumeration value="Savannas" />
+            <xs:enumeration value="Grasslands" />
+            <xs:enumeration value="Permanent wetlands" />
+            <xs:enumeration value="Croplands" />
+            <xs:enumeration value="Urban and built-up" />
+            <xs:enumeration value="Cropland/Natural vegetation mosaic" />
+            <xs:enumeration value="Snow and ice" />
+            <xs:enumeration value="Barren or sparsely vegetated" />
+            <xs:enumeration value="Unclassified" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="LandCoverTypes_UMD_Type">
+        <xs:annotation>
+            <xs:documentation>
+                None of the codes in the table are applicable in the context of this particular observation (nilReason)
+
+                Cf. https://lpdaac.usgs.gov/products/modis_products_table/mcd12q1
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Not applicable" />
+            <xs:enumeration value="Water" />
+            <xs:enumeration value="Evergreen Needleleaf forest" />
+            <xs:enumeration value="Evergreen Broadleaf forest" />
+            <xs:enumeration value="Deciduous Needleleaf forest" />
+            <xs:enumeration value="Deciduous Broadleaf forest" />
+            <xs:enumeration value="Mixed forest" />
+            <xs:enumeration value="Closed shrublands" />
+            <xs:enumeration value="Open shrublands" />
+            <xs:enumeration value="Woody savannas" />
+            <xs:enumeration value="Savannas" />
+            <xs:enumeration value="Grasslands" />
+            <xs:enumeration value="Croplands" />
+            <xs:enumeration value="Urban and built-up" />
+            <xs:enumeration value="Barren or sparsely vegetated" />
+            <xs:enumeration value="Unclassified" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="landCoverTypes_LAI_fPAR_Type">
+        <xs:annotation>
+            <xs:documentation>
+                None of the codes in the table are applicable in the context of this particular observation (nilReason)
+
+                Cf. https://lpdaac.usgs.gov/products/modis_products_table/mcd12q1
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Not applicable" />
+            <xs:enumeration value="Water" />
+            <xs:enumeration value="Grasses/Cereal crops" />
+            <xs:enumeration value="Shrubs" />
+            <xs:enumeration value="Broadleaf crops" />
+            <xs:enumeration value="Savanna" />
+            <xs:enumeration value="Evergreen broadleaf forest" />
+            <xs:enumeration value="Deciduous broadleaf forest" />
+            <xs:enumeration value="Evergreen needleleaf forest" />
+            <xs:enumeration value="Deciduous needleleaf forest" />
+            <xs:enumeration value="Non vegetated" />
+            <xs:enumeration value="Urban" />
+            <xs:enumeration value="Unclassified" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="landCoverTypes_NPP_Type">
+        <xs:annotation>
+            <xs:documentation>
+                None of the codes in the table are applicable in the context of this particular observation (nilReason)
+
+                Cf. https://lpdaac.usgs.gov/products/modis_products_table/mcd12q1
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Not applicable" />
+            <xs:enumeration value="Water" />
+            <xs:enumeration value="Evergreen needleleaf vegetation" />
+            <xs:enumeration value="Evergreen broadleaf vegetation" />
+            <xs:enumeration value="Deciduous needleleaf vegetation" />
+            <xs:enumeration value="Deciduous broadleaf vegetation" />
+            <xs:enumeration value="Annual broadleaf vegetation" />
+            <xs:enumeration value="Non-vegetated land" />
+            <xs:enumeration value="Urban" />
+            <xs:enumeration value="Unclassified" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="landCoverTypes_PFT_Type">
+        <xs:annotation>
+            <xs:documentation>
+                None of the codes in the table are applicable in the context of this particular observation (nilReason)
+
+                Cf. https://lpdaac.usgs.gov/products/modis_products_table/mcd12q1
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Water" />
+            <xs:enumeration value="Evergreen needleleaf trees" />
+            <xs:enumeration value="Evergreen broadleaf trees" />
+            <xs:enumeration value="Deciduous needleleaf trees" />
+            <xs:enumeration value="Deciduous broadleaf trees" />
+            <xs:enumeration value="Shrub" />
+            <xs:enumeration value="Grass" />
+            <xs:enumeration value="Cereal crops" />
+            <xs:enumeration value="Broad-leaf crops" />
+            <xs:enumeration value="Urban and built-up" />
+            <xs:enumeration value="Snow and ice" />
+            <xs:enumeration value="Barren or sparse vegetation" />
+            <xs:enumeration value="Unclassified" />
+            <xs:enumeration value="Fill Value" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="landCoverTypes_LCCS_Type">
+        <xs:annotation>
+            <xs:documentation>
+                None of the codes in the table are applicable in the context of this particular observation (nilReason)
+
+                cf. Antonio Di Gregorio (2005)
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Not applicable" />
+            <xs:enumeration value="Cultivated and Managed Terrestrial Areas" />
+            <xs:enumeration value="Natural and Semi-Natural Terrestrial Vegetation" />
+            <xs:enumeration value="Cultivated Aquatic or Regularly Flooded Areas" />
+            <xs:enumeration value="Natural and Semi-Natural Aquatic or Regularly Flooded Vegetation" />
+            <xs:enumeration value="Artificial Surfaces and Associated Areas" />
+            <xs:enumeration value="Bare Areas" />
+            <xs:enumeration value="Artificial Waterbodies, Snow and Ice" />
+            <xs:enumeration value="Natural Waterbodies, Snow and Ice" />
+            <xs:enumeration value="Unclassified" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="SurfaceCoverClassificatioScheme_Type">
+        <xs:annotation>
+            <xs:documentation>
+                Name and reference or link to document describing the classification scheme.
+
+                IGBP, UMD, LAI/fPAR, NPP and PFT, LCCS (recommended implementation as a URI pointing to the code table)
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Not applicable">
+                <xs:annotation>
+                    <xs:documentation>
+                        None of the codes in the table are applicable in the context of this particular observation (nilReason)
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="Land cover types (IGBP)">
+                <xs:annotation>
+                    <xs:documentation>
+                        International Geosphere-Biosphere Programme
+                        https://lpdaac.usgs.gov/products/modis_products_table/mcd12q1
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="Land cover types (UMD)">
+                <xs:annotation>
+                    <xs:documentation>
+                        The University of Maryland Department of Geography generated global land cover classification
+                        collection from 1998. http://glcf.umd.edu/data/landcover/
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="Land cover types (LAI/fPAR)">
+                <xs:annotation>
+                    <xs:documentation>
+                        Leaf Area Index (LAI) and Fractional Photosynthetically Active Radiation (FPAR). FPAR/LAI is the
+                        Fraction of Absorbed Photosynthetically Active radiation that a plant canopy absorbs for
+                        photosynthesis and growth in the 0.4 – 0.7nm spectral range.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="Land cover types (NPP)">
+                <xs:annotation>
+                    <xs:documentation>
+                        Net Primary Production (NPP) land cover scheme
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="Land cover types (PFT)">
+                <xs:annotation>
+                    <xs:documentation>
+                        Plant Functional Types (PFT) land cover scheme
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="Land cover types (LCCS)">
+                <xs:annotation>
+                    <xs:documentation>
+                        Land cover classification scheme (LCCS)
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="TopographyOrBathymetry_Type">
+        <xs:annotation>
+            <xs:documentation>
+                The shape or configuration of a geographical feature, represented on a map by contour lines
+
+                NOTE 1:Topography shall be formally expressed with the four
+                elements ‘local topography’, ‘relative elevation’, ‘topographic context’,
+                and ‘altitude/depth’.
+
+                NOTE 2:
+                The term ‘altitude’ is used for elevations above mean sea level. The
+                term ‘depth’ is used for elevations below mean sea level.
+
+                EXAMPLES (can be converted into entries of the code table):
+                “a ridge at low relative elevation within valleys of middle altitude”
+                “a depression within plains of very low depth”
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="localTopography" type="LocalTopography_Type" minOccurs="0" />
+            <xs:element name="relativeElevation" type="RelativeElevation_Type" minOccurs="0" />
+            <xs:element name="topographicContext" type="TopographicContext_Type" minOccurs="0" />
+            <xs:element name="altitudeDepth" type="AltitudeDepth_Type" minOccurs="0" />
+        </xs:sequence>
+    </xs:complexType>
+    <xs:simpleType name="LocalTopography_Type">
+        <xs:annotation>
+            <xs:documentation>
+                Based on Speight 2009
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Not applicable">
+                <xs:annotation>
+                    <xs:documentation>
+                        None of the codes in the table are applicable in the context of this particular observation (nilReason)
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="Hilltop">
+                <xs:annotation>
+                    <xs:documentation>
+                        Higher than all or nearly all of the surrounding land or subsurface.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="Ridge">
+                <xs:annotation>
+                    <xs:documentation>
+                        Higher than all or nearly all of the surrounding land or subsurface, but elongated and extending beyond a 50 m radius.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="Slope">
+                <xs:annotation>
+                    <xs:documentation>
+                        Neither crest nor depression or valley bottom, and with a slope more than 3%.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="Flat">
+                <xs:annotation>
+                    <xs:documentation>
+                        Slope less than 3% and not a top, ridge, valley bottom or depression. Use for plains.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="Valley bottom">
+                <xs:annotation>
+                    <xs:documentation>
+                        Lower than nearly all of surrounding land or subsurface, but water can flow out.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="Depression">
+                <xs:annotation>
+                    <xs:documentation>
+                        Lower than surrounding land or subsurface, with no above-ground outlet for water.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="RelativeElevation_Type">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Not applicable">
+                <xs:annotation>
+                    <xs:documentation>
+                        None of the codes in the table are applicable in the context of this particular observation (nilReason)
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="Lowest">
+                <xs:annotation>
+                    <xs:documentation>
+                        In the bottom 5% of the elevation range
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="Low">
+                <xs:annotation>
+                    <xs:documentation>
+                        Between 5% and 25% of the elevation range
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="Middle">
+                <xs:annotation>
+                    <xs:documentation>
+                        Between 25% and 75% of the elevation range
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="High">
+                <xs:annotation>
+                    <xs:documentation>
+                        Between 75% and 95% of the elevation range
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="Highest">
+                <xs:annotation>
+                    <xs:documentation>
+                        In the highest 5% of the elevation range
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="TopographicContext_Type">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Not applicable">
+                <xs:annotation>
+                    <xs:documentation>
+                        None of the codes in the table are applicable in the context of this particular observation (nilReason)
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="Plains">
+                <xs:annotation>
+                    <xs:documentation>
+                        Very low relief
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="Hollows">
+                <xs:annotation>
+                    <xs:documentation>
+                        Low relief, tending to convergent form
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="Rises">
+                <xs:annotation>
+                    <xs:documentation>
+                        Low relief, tending to divergent form
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="Valleys">
+                <xs:annotation>
+                    <xs:documentation>
+                        Medium relief, tending to convergent form
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="Hills">
+                <xs:annotation>
+                    <xs:documentation>
+                        Medium relief, tending to divergent form
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="Mountains">
+                <xs:annotation>
+                    <xs:documentation>
+                        High relief
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="AltitudeDepth_Type">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Not applicable">
+                <xs:annotation>
+                    <xs:documentation>
+                        None of the codes in the table are applicable in the context of this particular observation (nilReason)
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="Very small">
+                <xs:annotation>
+                    <xs:documentation>
+                        between -100 m and 100 m
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="Small">
+                <xs:annotation>
+                    <xs:documentation>
+                        Between -300 and -100 m or between 100 and 300 m
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="Middle">
+                <xs:annotation>
+                    <xs:documentation>
+                        Between -1000 and -300 m or between 300 and 1000 m
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="Large">
+                <xs:annotation>
+                    <xs:documentation>
+                        Between -3000 and -1000 m Between 1000 and 3000 m
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="Very large">
+                <xs:annotation>
+                    <xs:documentation>
+                        Deeper than -3000 m or above 3000 m
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="EventsAtStationPlatform_Type">
+        <xs:annotation>
+            <xs:documentation>
+                Description of human action or natural event at the station or in the vicinity that may influence the observation
+            </xs:documentation>
+        </xs:annotation>
+        <xs:choice>
+            <xs:element name="freeText" type="xs:string" />
+            <xs:element name="event" type="EventsAtStationPlatformNotFreeText_Type" />
+        </xs:choice>
+    </xs:complexType>
+    <xs:simpleType name="EventsAtStationPlatformNotFreeText_Type">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Grass-cutting" />
+            <xs:enumeration value="Snow clearing" />
+            <xs:enumeration value="Tree removal" />
+            <xs:enumeration value="Construction activity" />
+            <xs:enumeration value="Road work" />
+            <xs:enumeration value="Biomass burning">
+                <xs:annotation>
+                    <xs:documentation>
+                        Anthropogenic or natural
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="Dust storm" />
+            <xs:enumeration value="Storm damage" />
+            <xs:enumeration value="Wind storm" />
+            <xs:enumeration value="Flood" />
+            <xs:enumeration value="Fire" />
+            <xs:enumeration value="Earthquake" />
+            <xs:enumeration value="Land slide" />
+            <xs:enumeration value="Storm surge or tsunami" />
+            <xs:enumeration value="Lightning" />
+            <xs:enumeration value="Vandalism" />
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

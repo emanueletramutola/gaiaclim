@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <xs:complexType name="ObservedVariable_Type">
+        <xs:annotation>
+            <xs:documentation>
+                Specifies the basic characteristics of the observed variable and the resulting datasets. It includes an element describing the spatial
+                representativeness of the observation as well as the biogeophysical compartment the observation describe.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="observedVariable-measurand" type="ObservedVariable-measurand_Type"/>
+            <xs:element name="measurementUnit" type="MeasurementUnit_Type" minOccurs="0"/>
+            <xs:element name="temporalExtent" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        Time period covered by a series of observations inclusive of the specified date-time indications (measurement history).
+
+                        NOTE 1:
+                        The Temporal Extent is defined through the begin and end dates
+                        of observations.
+                        NOTE 2:
+                        If the data are still being added to, omit the End date (but specify
+                        a Begin date).
+                        NOTE 3:
+                        If there are gaps in the data collection (e.g. 1950-1955 then
+                        collection resumes 1960-present) then the first date recorded
+                        should be the earliest date and the last the most recent, ignoring
+                        the gap.
+
+                        EXAMPLES:
+                        Surface temperature at the station Säntis has been observed
+                        since 1 September 1882. The CO2 record at Mauna Loa extends
+                        from 1958 to today. Continuous, 1-hourly aggregates are
+                        available from the World Data Centre for Greenhouse Gases for
+                        the period 1974-01-01 to 2011-12-31
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="spatialExtent" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        Typical spatial georeferenced volume covered by the observations.
+
+                        NOTE 1:
+                        The spatial extent of an observed quantity can be a zero-, one-,
+                        two-, or three-dimensional feature and will be expressed in terms
+                        of a series of geospatial locations describing a geometric shape.
+                        NOTE 2:
+                        A zero-dimensional geospatial location of an observation implies
+                        either an in-situ (point) observation or, by convention, a columnaveraged
+                        quantity above the specified geospatial location in nadir.
+                        One-dimensional geospatial location of an observation implies a
+                        distribution / profile of a quantity along a trajectory (e.g., a straight
+                        line from the ground up with a given zenith angle). A twodimensional
+                        geospatial location of an observation implies an area
+                        or hyper-surface (e.g., a radar image, or a satellite pixel of a
+                        property near the surface). A three-dimensional geospatial
+                        location of an observation implies a volume-averaged quantity
+                        (e.g., a radar pixel in 3D-space).
+
+                        EXAMPLES:
+                        i) Air temperature at a surface observing site: Sydney Airport
+                        NSW: Lat. -33.9465 N; Lon. 151.1731 E, Alt: 6.0 m above msl.
+                        ii) The projected area or volume of the cone around a particular
+                        weather radar with a maximum range of 370 km (radar reflectivity)
+                        and 150 km (Doppler); to be expressed as a geometric shape.
+                        iii) 3-dimensional grid of radar pixels
+                        iv) Infrared and visible imagery by meteorological satellite
+                        (sunsynchronous): VIRR (FY-3), Global coverage twice/day (IR)
+                        or once/day (VIS)
+                        v) River discharge by gauge: size and geometric shape of a river
+                        Catchment.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="representativenessOfObservation" type="Representativeness_Type" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="ObservedVariable-measurand_Type">
+        <xs:annotation>
+            <xs:documentation>
+                Variable intended to be measured or observed or derived, including the biogeophysical context.
+
+                [ISO19156] NOTE 1:
+                In conventional measurement theory the term “measurement” is
+                used. However, a distinction between measurement and
+                category-observation has been adopted in more recent work so
+                the term “observation” is used for the general concept.
+                “Measurement” may be reserved for cases where the result is a
+                numeric quantity.
+
+                NOTE 2:
+                The biogeophysical context is expressed in terms of Domain,
+                Subdomain/Matrix, and Layer, and variables are organized
+                hierarchically using these dimensions. Relevant domains,
+                matrices and layers include atmosphere, aerosol, lake, river,
+                ocean, soil, cloud water, aerosol particulate phase, land surface,
+                troposphere, upper troposphere/lower stratosphere, space, etc.
+
+                EXAMPLES:
+                In hydrology, this would typically be stage or discharge.
+                Present weather;
+                Air temperature near the surface;
+                CO2 mixing ratio in the atmosphere
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="domain" type="Domain_Type"></xs:element>
+            <xs:element name="subdomain" type="Subdomain_Type"></xs:element>
+            <xs:element name="matrix" type="xs:string" minOccurs="0"></xs:element>
+            <xs:element name="variable" type="xs:string"></xs:element>
+            <xs:element name="modeOfObservation" type="ModeOfObservation_Type" minOccurs="1" maxOccurs="unbounded"></xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="MeasurementUnit_Type">
+        <xs:annotation>
+            <xs:documentation>
+                Real scalar quantity, defined and adopted by convention, with which any other quantity of the same kind
+                can be compared to express the ratio of the two quantities as a number.
+
+                JCGM 200:2012, 1.9] NOTE 1.
+                Measurement units are designated by conventionally assigned
+                names and symbols.
+
+                [JCGM 200:2012, 1.9] NOTE 2
+                Measurement units of quantities of the same quantity dimension
+                may be designated by the same name and symbol even when the
+                quantities are not of the same kind. For example, joule per kelvin
+                and J/K are respectively the name and symbol of both a
+                measurement unit of heat capacity and a measurement unit of
+                entropy, which are generally not considered to be quantities of the
+                same kind. However, in some cases special measurement unit
+                names are restricted to be used with quantities of a specific kind
+                only. For example, the measurement unit ‘second to the power
+                minus one’ (1/s) is called hertz (Hz) when used for frequencies
+                and becquerel (Bq) when used for activities of radionuclides.
+
+                [JCGM 200:2012, 1.9] NOTE 3
+                Measurement units of quantities of dimension one are
+                numbers. In some cases these measurement units are given
+                special names, e.g. radian, steradian, and decibel, or are
+                expressed by quotients such as millimole per mole equal to 10–3
+                and microgram per kilogram equal to 10–9.
+
+                [JCGM 200:2012, 1.9] NOTE 4
+                For a given quantity, the short term “unit” is often combined with
+                the quantity name, such as “mass unit” or “unit of mass”.
+
+                EXAMPLE
+                In hydrology, this would typically be m for stage or m3/s for discharge.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="name" type="xs:string"></xs:element>
+            <xs:element name="abbreviation" type="xs:string"></xs:element>
+            <xs:element name="definitionInBaseUnits" type="xs:string" minOccurs="0"></xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:simpleType name="Representativeness_Type">
+        <xs:restriction base="xs:string">
+            <xs:annotation>
+                <xs:documentation>
+                    Spatial extent of the region around the observation for which it is representative.
+
+                    NOTE:
+                    The representativeness of an observation is the degree to which it
+                    describes the value of the variable needed for a specific purpose.
+                    Therefore, it is not a fixed quality of any observation, but results
+                    from joint appraisal of instrumentation, measurement interval and
+                    exposure against the requirements of some particular application
+                    (WMO-No. 8, 2008). Representativeness of an observed value
+                    describes the concept that the result of an observation made at a
+                    given geospatial location would be compatible with the result of
+                    other observations of the same quantity at other geospatial
+                    locations. In statistics, the term describes the notion that a sample
+                    of a population allows an adequate description of the whole
+                    population. Assessing representativeness can only be
+                    accomplished in the context of the question the data [or
+                    observations] are supposed to address. In the simplest terms, if
+                    the data [or observations] can answer the question, it is
+                    representative (Ramsey and Hewitt, 2005). The
+                    representativeness of an environmental observation depends on
+                    the spatio-temporal dynamics of the observed quantity (Henne et
+                    al., 2010). Representativeness of an observation can sometimes
+                    be specified quantitatively, in most cases qualitatively, based on
+                    experience or heuristic arguments.
+
+                    EXPECTED VALUES:
+                    Nil reason -> None of the codes in the table is applicable in the context of the observed quantity or unknown, or not available information
+                    microscale -> An area or volume less than 100 m horizontal extent (for example, evaporation)
+                    toposcale, local scale -> An area or volume of 100 m to 3 km horizontal extent (for example, air pollution, tornadoes)
+                    mesoscale -> An area or volume of 3 km to 100 km horizontal extent (for example, thunderstorms, sea and mountain breezes)
+                    large scale -> An area or volume of 100 km to 3000 km horizontal extent (for example, fronts, various cyclones, cloud clusters)
+                    planetary scale -> An area or volume of more than 3000 km horizontal extent (for example, long upper tropospheric waves)
+                    drainage area -> An area (also known as ‘catchment’) having a common outlet for its surface runoff, in km2
+                </xs:documentation>
+            </xs:annotation>
+            <xs:enumeration value="Nil reason"/>
+            <xs:enumeration value="microscale"/>
+            <xs:enumeration value="toposcale"/>
+            <xs:enumeration value="mesoscale"/>
+            <xs:enumeration value="large scale"/>
+            <xs:enumeration value="planetary scale"/>
+            <xs:enumeration value="drainage scale"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="Domain_Type">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Atmospheric"/>
+            <xs:enumeration value="Oceanic"/>
+            <xs:enumeration value="Terrestrial"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="Subdomain_Type">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Temperature"/>
+            <xs:enumeration value="Water vapour"/>
+            <xs:enumeration value="Carbon dioxide"/>
+            <xs:enumeration value="Methane"/>
+            <xs:enumeration value="Ozone"/>
+            <xs:enumeration value="Aerosols"/>
+            <xs:enumeration value="Carbon Monoxide"/>
+            <xs:enumeration value="Formaldehyde"/>
+            <xs:enumeration value="Nitrogen Dioxide"/>
+            <xs:enumeration value="VOCs"/>
+            <xs:enumeration value="Black and brown carbon"/>
+            <xs:enumeration value="Atmospheric Pressure"/>
+            <xs:enumeration value="Wind"/>
+            <xs:enumeration value="Global Downward Solar Radiation"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="ModeOfObservation_Type">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="I">
+                <xs:annotation>
+                    <xs:documentation>
+                        Instantaneous
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="T">
+                <xs:annotation>
+                    <xs:documentation>
+                        Total
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="V">
+                <xs:annotation>
+                    <xs:documentation>
+                        Variability
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

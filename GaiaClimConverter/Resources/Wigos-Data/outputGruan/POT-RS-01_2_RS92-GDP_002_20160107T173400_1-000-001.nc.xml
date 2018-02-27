@@ -1,0 +1,551 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<gaiaClimMetadataType>
+    <observedVariable>
+        <observedVariable-measurand>
+            <domain>Atmospheric</domain>
+            <variable>time</variable>
+            <modeOfObservation>I</modeOfObservation>
+        </observedVariable-measurand>
+        <measurementUnit>
+            <name>second</name>
+            <abbreviation>s</abbreviation>
+        </measurementUnit>
+        <temporalExtent>StartTime: 2016-01-07T17:34:33; StopTime: 2016-01-07T19:27:37; TemporalExtent:6784 s
+        </temporalExtent>
+        <spatialExtent>from 768.18054m to 35697.875m</spatialExtent>
+        <representativenessOfObservation>mesoscale</representativenessOfObservation>
+    </observedVariable>
+    <observedVariable>
+        <observedVariable-measurand>
+            <domain>Atmospheric</domain>
+            <subdomain>Atmospheric Pressure</subdomain>
+            <variable>air_pressure</variable>
+            <modeOfObservation>I</modeOfObservation>
+        </observedVariable-measurand>
+        <measurementUnit>
+            <name>hectopascal</name>
+            <abbreviation>hPa</abbreviation>
+        </measurementUnit>
+        <temporalExtent>StartTime: 2016-01-07T17:34:33; StopTime: 2016-01-07T19:27:37; TemporalExtent:6784 s
+        </temporalExtent>
+        <spatialExtent>from 768.18054m to 35697.875m</spatialExtent>
+        <representativenessOfObservation>mesoscale</representativenessOfObservation>
+    </observedVariable>
+    <observedVariable>
+        <observedVariable-measurand>
+            <domain>Atmospheric</domain>
+            <subdomain>Temperature</subdomain>
+            <variable>air_temperature</variable>
+            <modeOfObservation>I</modeOfObservation>
+        </observedVariable-measurand>
+        <measurementUnit>
+            <name>degree Kelvin</name>
+            <abbreviation>K</abbreviation>
+        </measurementUnit>
+        <temporalExtent>StartTime: 2016-01-07T17:34:33; StopTime: 2016-01-07T19:27:37; TemporalExtent:6784 s
+        </temporalExtent>
+        <spatialExtent>from 768.18054m to 35697.875m</spatialExtent>
+        <representativenessOfObservation>mesoscale</representativenessOfObservation>
+    </observedVariable>
+    <observedVariable>
+        <observedVariable-measurand>
+            <domain>Atmospheric</domain>
+            <subdomain>Water vapour</subdomain>
+            <variable>relative_humidity</variable>
+            <modeOfObservation>I</modeOfObservation>
+        </observedVariable-measurand>
+        <measurementUnit>
+            <name>per cent</name>
+            <abbreviation>%</abbreviation>
+        </measurementUnit>
+        <temporalExtent>StartTime: 2016-01-07T17:34:33; StopTime: 2016-01-07T19:27:37; TemporalExtent:6784 s
+        </temporalExtent>
+        <spatialExtent>from 768.18054m to 35697.875m</spatialExtent>
+        <representativenessOfObservation>mesoscale</representativenessOfObservation>
+    </observedVariable>
+    <observedVariable>
+        <observedVariable-measurand>
+            <domain>Atmospheric</domain>
+            <subdomain>Wind</subdomain>
+            <variable>wind_from_direction</variable>
+            <modeOfObservation>I</modeOfObservation>
+        </observedVariable-measurand>
+        <measurementUnit>
+            <name>degree</name>
+            <abbreviation>deg</abbreviation>
+        </measurementUnit>
+        <temporalExtent>StartTime: 2016-01-07T17:34:33; StopTime: 2016-01-07T19:27:37; TemporalExtent:6784 s
+        </temporalExtent>
+        <spatialExtent>from 768.18054m to 35697.875m</spatialExtent>
+        <representativenessOfObservation>mesoscale</representativenessOfObservation>
+    </observedVariable>
+    <observedVariable>
+        <observedVariable-measurand>
+            <domain>Atmospheric</domain>
+            <subdomain>Wind</subdomain>
+            <variable>wind_speed</variable>
+            <modeOfObservation>I</modeOfObservation>
+        </observedVariable-measurand>
+        <measurementUnit>
+            <name>metres per second</name>
+            <abbreviation>m s-1</abbreviation>
+        </measurementUnit>
+        <temporalExtent>StartTime: 2016-01-07T17:34:33; StopTime: 2016-01-07T19:27:37; TemporalExtent:6784 s
+        </temporalExtent>
+        <spatialExtent>from 768.18054m to 35697.875m</spatialExtent>
+        <representativenessOfObservation>mesoscale</representativenessOfObservation>
+    </observedVariable>
+    <observedVariable>
+        <observedVariable-measurand>
+            <domain>Atmospheric</domain>
+            <variable>geopotential_height</variable>
+            <modeOfObservation>I</modeOfObservation>
+        </observedVariable-measurand>
+        <measurementUnit>
+            <name>meter</name>
+            <abbreviation>m</abbreviation>
+        </measurementUnit>
+        <temporalExtent>StartTime: 2016-01-07T17:34:33; StopTime: 2016-01-07T19:27:37; TemporalExtent:6784 s
+        </temporalExtent>
+        <spatialExtent>from 768.18054m to 35697.875m</spatialExtent>
+        <representativenessOfObservation>mesoscale</representativenessOfObservation>
+    </observedVariable>
+    <observedVariable>
+        <observedVariable-measurand>
+            <domain>Atmospheric</domain>
+            <variable>longitude</variable>
+            <modeOfObservation>I</modeOfObservation>
+        </observedVariable-measurand>
+        <measurementUnit>
+            <name>degrees east</name>
+        </measurementUnit>
+        <temporalExtent>StartTime: 2016-01-07T17:34:33; StopTime: 2016-01-07T19:27:37; TemporalExtent:6784 s
+        </temporalExtent>
+        <spatialExtent>from 768.18054m to 35697.875m</spatialExtent>
+        <representativenessOfObservation>mesoscale</representativenessOfObservation>
+    </observedVariable>
+    <observedVariable>
+        <observedVariable-measurand>
+            <domain>Atmospheric</domain>
+            <variable>latitude</variable>
+            <modeOfObservation>I</modeOfObservation>
+        </observedVariable-measurand>
+        <measurementUnit>
+            <name>degrees north</name>
+        </measurementUnit>
+        <temporalExtent>StartTime: 2016-01-07T17:34:33; StopTime: 2016-01-07T19:27:37; TemporalExtent:6784 s
+        </temporalExtent>
+        <spatialExtent>from 768.18054m to 35697.875m</spatialExtent>
+        <representativenessOfObservation>mesoscale</representativenessOfObservation>
+    </observedVariable>
+    <observedVariable>
+        <observedVariable-measurand>
+            <domain>Atmospheric</domain>
+            <variable>altitude</variable>
+            <modeOfObservation>I</modeOfObservation>
+        </observedVariable-measurand>
+        <measurementUnit>
+            <name>meter</name>
+            <abbreviation>m</abbreviation>
+        </measurementUnit>
+        <temporalExtent>StartTime: 2016-01-07T17:34:33; StopTime: 2016-01-07T19:27:37; TemporalExtent:6784 s
+        </temporalExtent>
+        <spatialExtent>from 768.18054m to 35697.875m</spatialExtent>
+        <representativenessOfObservation>mesoscale</representativenessOfObservation>
+    </observedVariable>
+    <observedVariable>
+        <observedVariable-measurand>
+            <domain>Atmospheric</domain>
+            <subdomain>Wind</subdomain>
+            <variable>eastward_wind</variable>
+            <modeOfObservation>I</modeOfObservation>
+        </observedVariable-measurand>
+        <measurementUnit>
+            <name>metres per second</name>
+            <abbreviation>m s-1</abbreviation>
+        </measurementUnit>
+        <temporalExtent>StartTime: 2016-01-07T17:34:33; StopTime: 2016-01-07T19:27:37; TemporalExtent:6784 s
+        </temporalExtent>
+        <spatialExtent>from 768.18054m to 35697.875m</spatialExtent>
+        <representativenessOfObservation>mesoscale</representativenessOfObservation>
+    </observedVariable>
+    <observedVariable>
+        <observedVariable-measurand>
+            <domain>Atmospheric</domain>
+            <subdomain>Wind</subdomain>
+            <variable>northward_wind</variable>
+            <modeOfObservation>I</modeOfObservation>
+        </observedVariable-measurand>
+        <measurementUnit>
+            <name>metres per second</name>
+            <abbreviation>m s-1</abbreviation>
+        </measurementUnit>
+        <temporalExtent>StartTime: 2016-01-07T17:34:33; StopTime: 2016-01-07T19:27:37; TemporalExtent:6784 s
+        </temporalExtent>
+        <spatialExtent>from 768.18054m to 35697.875m</spatialExtent>
+        <representativenessOfObservation>mesoscale</representativenessOfObservation>
+    </observedVariable>
+    <observedVariable>
+        <observedVariable-measurand>
+            <domain>Atmospheric</domain>
+            <subdomain>Temperature</subdomain>
+            <variable>Frostpoint</variable>
+            <modeOfObservation>I</modeOfObservation>
+        </observedVariable-measurand>
+        <measurementUnit>
+            <name>degree Kelvin</name>
+            <abbreviation>K</abbreviation>
+        </measurementUnit>
+        <temporalExtent>StartTime: 2016-01-07T17:34:33; StopTime: 2016-01-07T19:27:37; TemporalExtent:6784 s
+        </temporalExtent>
+        <spatialExtent>from 768.18054m to 35697.875m</spatialExtent>
+        <representativenessOfObservation>mesoscale</representativenessOfObservation>
+    </observedVariable>
+    <observedVariable>
+        <observedVariable-measurand>
+            <domain>Atmospheric</domain>
+            <subdomain>Water vapour</subdomain>
+            <variable>Water_vapor_mixing_ratio</variable>
+            <modeOfObservation>I</modeOfObservation>
+        </observedVariable-measurand>
+        <measurementUnit/>
+        <temporalExtent>StartTime: 2016-01-07T17:34:33; StopTime: 2016-01-07T19:27:37; TemporalExtent:6784 s
+        </temporalExtent>
+        <spatialExtent>from 768.18054m to 35697.875m</spatialExtent>
+        <representativenessOfObservation>mesoscale</representativenessOfObservation>
+    </observedVariable>
+    <observedVariable>
+        <observedVariable-measurand>
+            <domain>Atmospheric</domain>
+            <variable>Ascent/Descent Speed</variable>
+            <modeOfObservation>I</modeOfObservation>
+        </observedVariable-measurand>
+        <measurementUnit>
+            <name>metres per second</name>
+            <abbreviation>m s-1</abbreviation>
+        </measurementUnit>
+        <temporalExtent>StartTime: 2016-01-07T17:34:33; StopTime: 2016-01-07T19:27:37; TemporalExtent:6784 s
+        </temporalExtent>
+        <spatialExtent>from 768.18054m to 35697.875m</spatialExtent>
+        <representativenessOfObservation>mesoscale</representativenessOfObservation>
+    </observedVariable>
+    <observedVariable>
+        <observedVariable-measurand>
+            <domain>Atmospheric</domain>
+            <subdomain>Global Downward Solar Radiation</subdomain>
+            <variable>short_wave_radiation</variable>
+            <modeOfObservation>I</modeOfObservation>
+        </observedVariable-measurand>
+        <measurementUnit>
+            <name>watts per square metre</name>
+            <abbreviation>W m-2</abbreviation>
+        </measurementUnit>
+        <temporalExtent>StartTime: 2016-01-07T17:34:33; StopTime: 2016-01-07T19:27:37; TemporalExtent:6784 s
+        </temporalExtent>
+        <spatialExtent>from 768.18054m to 35697.875m</spatialExtent>
+        <representativenessOfObservation>mesoscale</representativenessOfObservation>
+    </observedVariable>
+    <observedVariable>
+        <observedVariable-measurand>
+            <domain>Atmospheric</domain>
+            <subdomain>Global Downward Solar Radiation</subdomain>
+            <variable>short_wave_radiation standard_error</variable>
+            <modeOfObservation>I</modeOfObservation>
+        </observedVariable-measurand>
+        <measurementUnit>
+            <name>watts per square metre</name>
+            <abbreviation>W m-2</abbreviation>
+        </measurementUnit>
+        <temporalExtent>StartTime: 2016-01-07T17:34:33; StopTime: 2016-01-07T19:27:37; TemporalExtent:6784 s
+        </temporalExtent>
+        <spatialExtent>from 768.18054m to 35697.875m</spatialExtent>
+        <representativenessOfObservation>mesoscale</representativenessOfObservation>
+    </observedVariable>
+    <observedVariable>
+        <observedVariable-measurand>
+            <domain>Atmospheric</domain>
+            <subdomain>Temperature</subdomain>
+            <variable>air_temperature correction</variable>
+            <modeOfObservation>I</modeOfObservation>
+        </observedVariable-measurand>
+        <measurementUnit>
+            <name>degree Kelvin</name>
+            <abbreviation>K</abbreviation>
+        </measurementUnit>
+        <temporalExtent>StartTime: 2016-01-07T17:34:33; StopTime: 2016-01-07T19:27:37; TemporalExtent:6784 s
+        </temporalExtent>
+        <spatialExtent>from 768.18054m to 35697.875m</spatialExtent>
+        <representativenessOfObservation>mesoscale</representativenessOfObservation>
+    </observedVariable>
+    <observedVariable>
+        <observedVariable-measurand>
+            <domain>Atmospheric</domain>
+            <subdomain>Temperature</subdomain>
+            <variable>air_temperature correlated_uncertainty</variable>
+            <modeOfObservation>I</modeOfObservation>
+        </observedVariable-measurand>
+        <measurementUnit>
+            <name>degree Kelvin</name>
+            <abbreviation>K</abbreviation>
+        </measurementUnit>
+        <temporalExtent>StartTime: 2016-01-07T17:34:33; StopTime: 2016-01-07T19:27:37; TemporalExtent:6784 s
+        </temporalExtent>
+        <spatialExtent>from 768.18054m to 35697.875m</spatialExtent>
+        <representativenessOfObservation>mesoscale</representativenessOfObservation>
+    </observedVariable>
+    <observedVariable>
+        <observedVariable-measurand>
+            <domain>Atmospheric</domain>
+            <subdomain>Temperature</subdomain>
+            <variable>air_temperature standard_deviation</variable>
+            <modeOfObservation>I</modeOfObservation>
+        </observedVariable-measurand>
+        <measurementUnit>
+            <name>degree Kelvin</name>
+            <abbreviation>K</abbreviation>
+        </measurementUnit>
+        <temporalExtent>StartTime: 2016-01-07T17:34:33; StopTime: 2016-01-07T19:27:37; TemporalExtent:6784 s
+        </temporalExtent>
+        <spatialExtent>from 768.18054m to 35697.875m</spatialExtent>
+        <representativenessOfObservation>mesoscale</representativenessOfObservation>
+    </observedVariable>
+    <observedVariable>
+        <observedVariable-measurand>
+            <domain>Atmospheric</domain>
+            <subdomain>Temperature</subdomain>
+            <variable>air_temperature standard_error</variable>
+            <modeOfObservation>I</modeOfObservation>
+        </observedVariable-measurand>
+        <measurementUnit>
+            <name>degree Kelvin</name>
+            <abbreviation>K</abbreviation>
+        </measurementUnit>
+        <temporalExtent>StartTime: 2016-01-07T17:34:33; StopTime: 2016-01-07T19:27:37; TemporalExtent:6784 s
+        </temporalExtent>
+        <spatialExtent>from 768.18054m to 35697.875m</spatialExtent>
+        <representativenessOfObservation>mesoscale</representativenessOfObservation>
+    </observedVariable>
+    <observedVariable>
+        <observedVariable-measurand>
+            <domain>Atmospheric</domain>
+            <variable>altitude standard_error</variable>
+            <modeOfObservation>I</modeOfObservation>
+        </observedVariable-measurand>
+        <measurementUnit>
+            <name>meter</name>
+            <abbreviation>m</abbreviation>
+        </measurementUnit>
+        <temporalExtent>StartTime: 2016-01-07T17:34:33; StopTime: 2016-01-07T19:27:37; TemporalExtent:6784 s
+        </temporalExtent>
+        <spatialExtent>from 768.18054m to 35697.875m</spatialExtent>
+        <representativenessOfObservation>mesoscale</representativenessOfObservation>
+    </observedVariable>
+    <observedVariable>
+        <observedVariable-measurand>
+            <domain>Atmospheric</domain>
+            <subdomain>Atmospheric Pressure</subdomain>
+            <variable>air_pressure standard_error</variable>
+            <modeOfObservation>I</modeOfObservation>
+        </observedVariable-measurand>
+        <measurementUnit>
+            <name>hectopascal</name>
+            <abbreviation>hPa</abbreviation>
+        </measurementUnit>
+        <temporalExtent>StartTime: 2016-01-07T17:34:33; StopTime: 2016-01-07T19:27:37; TemporalExtent:6784 s
+        </temporalExtent>
+        <spatialExtent>from 768.18054m to 35697.875m</spatialExtent>
+        <representativenessOfObservation>mesoscale</representativenessOfObservation>
+    </observedVariable>
+    <observedVariable>
+        <observedVariable-measurand>
+            <domain>Atmospheric</domain>
+            <subdomain>Water vapour</subdomain>
+            <variable>relative_humidity resolution</variable>
+            <modeOfObservation>I</modeOfObservation>
+        </observedVariable-measurand>
+        <measurementUnit>
+            <name>seconds</name>
+            <abbreviation>s</abbreviation>
+        </measurementUnit>
+        <temporalExtent>StartTime: 2016-01-07T17:34:33; StopTime: 2016-01-07T19:27:37; TemporalExtent:6784 s
+        </temporalExtent>
+        <spatialExtent>from 768.18054m to 35697.875m</spatialExtent>
+        <representativenessOfObservation>mesoscale</representativenessOfObservation>
+    </observedVariable>
+    <observedVariable>
+        <observedVariable-measurand>
+            <domain>Atmospheric</domain>
+            <subdomain>Water vapour</subdomain>
+            <variable>relative_humidity standard_deviation</variable>
+            <modeOfObservation>I</modeOfObservation>
+        </observedVariable-measurand>
+        <measurementUnit/>
+        <temporalExtent>StartTime: 2016-01-07T17:34:33; StopTime: 2016-01-07T19:27:37; TemporalExtent:6784 s
+        </temporalExtent>
+        <spatialExtent>from 768.18054m to 35697.875m</spatialExtent>
+        <representativenessOfObservation>mesoscale</representativenessOfObservation>
+    </observedVariable>
+    <observedVariable>
+        <observedVariable-measurand>
+            <domain>Atmospheric</domain>
+            <subdomain>Water vapour</subdomain>
+            <variable>relative_humidity correction</variable>
+            <modeOfObservation>I</modeOfObservation>
+        </observedVariable-measurand>
+        <measurementUnit/>
+        <temporalExtent>StartTime: 2016-01-07T17:34:33; StopTime: 2016-01-07T19:27:37; TemporalExtent:6784 s
+        </temporalExtent>
+        <spatialExtent>from 768.18054m to 35697.875m</spatialExtent>
+        <representativenessOfObservation>mesoscale</representativenessOfObservation>
+    </observedVariable>
+    <observedVariable>
+        <observedVariable-measurand>
+            <domain>Atmospheric</domain>
+            <subdomain>Water vapour</subdomain>
+            <variable>relative_humidity correlated_uncertainty</variable>
+            <modeOfObservation>I</modeOfObservation>
+        </observedVariable-measurand>
+        <measurementUnit/>
+        <temporalExtent>StartTime: 2016-01-07T17:34:33; StopTime: 2016-01-07T19:27:37; TemporalExtent:6784 s
+        </temporalExtent>
+        <spatialExtent>from 768.18054m to 35697.875m</spatialExtent>
+        <representativenessOfObservation>mesoscale</representativenessOfObservation>
+    </observedVariable>
+    <observedVariable>
+        <observedVariable-measurand>
+            <domain>Atmospheric</domain>
+            <subdomain>Water vapour</subdomain>
+            <variable>relative_humidity standard_error</variable>
+            <modeOfObservation>I</modeOfObservation>
+        </observedVariable-measurand>
+        <measurementUnit/>
+        <temporalExtent>StartTime: 2016-01-07T17:34:33; StopTime: 2016-01-07T19:27:37; TemporalExtent:6784 s
+        </temporalExtent>
+        <spatialExtent>from 768.18054m to 35697.875m</spatialExtent>
+        <representativenessOfObservation>mesoscale</representativenessOfObservation>
+    </observedVariable>
+    <observedVariable>
+        <observedVariable-measurand>
+            <domain>Atmospheric</domain>
+            <subdomain>Wind</subdomain>
+            <variable>wind_from_direction standard_error</variable>
+            <modeOfObservation>I</modeOfObservation>
+        </observedVariable-measurand>
+        <measurementUnit>
+            <name>degree</name>
+            <abbreviation>deg</abbreviation>
+        </measurementUnit>
+        <temporalExtent>StartTime: 2016-01-07T17:34:33; StopTime: 2016-01-07T19:27:37; TemporalExtent:6784 s
+        </temporalExtent>
+        <spatialExtent>from 768.18054m to 35697.875m</spatialExtent>
+        <representativenessOfObservation>mesoscale</representativenessOfObservation>
+    </observedVariable>
+    <observedVariable>
+        <observedVariable-measurand>
+            <domain>Atmospheric</domain>
+            <subdomain>Wind</subdomain>
+            <variable>wind_speed standard_error</variable>
+            <modeOfObservation>I</modeOfObservation>
+        </observedVariable-measurand>
+        <measurementUnit>
+            <name>metres per second</name>
+            <abbreviation>m s-1</abbreviation>
+        </measurementUnit>
+        <temporalExtent>StartTime: 2016-01-07T17:34:33; StopTime: 2016-01-07T19:27:37; TemporalExtent:6784 s
+        </temporalExtent>
+        <spatialExtent>from 768.18054m to 35697.875m</spatialExtent>
+        <representativenessOfObservation>mesoscale</representativenessOfObservation>
+    </observedVariable>
+    <purposeOfObservation>
+        <applicationArea>Climate monitoring (as undertaken through the Global Climate Observing System, GCOS)
+        </applicationArea>
+        <programmeNetworkAffiliation>
+            <name>GRUAN</name>
+            <definition>GCOS Reference Upper Air Network</definition>
+            <sponsorContributing>GCOS</sponsorContributing>
+        </programmeNetworkAffiliation>
+    </purposeOfObservation>
+    <stationPlatform>
+        <regionOfOriginOfData>VI</regionOfOriginOfData>
+        <territoryOfOriginOfData>
+            <name>Italy</name>
+            <ISO3CountryCode>ITA</ISO3CountryCode>
+        </territoryOfOriginOfData>
+        <stationPlatformName>Potenza</stationPlatformName>
+        <stationPlatformType>land station</stationPlatformType>
+        <stationPlatformModel>Radiosonde</stationPlatformModel>
+        <stationPlatformUniqueIdentifier>POT</stationPlatformUniqueIdentifier>
+        <geospatialLocation>
+            <coordinatesSourceDevice>GPS</coordinatesSourceDevice>
+            <coordinatesReference>WGS84</coordinatesReference>
+        </geospatialLocation>
+        <stationStatus>Operational/Reporting</stationStatus>
+    </stationPlatform>
+    <environment>
+        <siteInformation>Name:Potenza Country:ITA lat.:40.60 long.:15.72 height:760.0 m</siteInformation>
+    </environment>
+    <instrumentsAndMethodsOfObservation>
+        <sourceOfObservation>Automatic observation</sourceOfObservation>
+        <measurementObservingMethod>Radiosonde</measurementObservingMethod>
+        <instrumentSpecifications>specification for Vaisala RS92-SGP</instrumentSpecifications>
+        <instrumentOperatingStatus>Operational</instrumentOperatingStatus>
+        <instrumentControlResult>no changes - in calibration</instrumentControlResult>
+        <instrumentModelAndSerialNumber>Name:Vaisala Model:RS92-SGPNumber:L4353595 Firmware:3.62
+        </instrumentModelAndSerialNumber>
+        <statusOfObservation>Primary</statusOfObservation>
+        <exposureOfInstruments>Class 1</exposureOfInstruments>
+    </instrumentsAndMethodsOfObservation>
+    <sampling>
+        <samplingProcedures>Measurements are performed using a ballon-borne radiosonde; products are vertical profiles
+            of temperature, humidity, pressure and wind from the ground level to about 30-35 km above.
+        </samplingProcedures>
+        <sampleTreatment>heating and cooling</sampleTreatment>
+        <samplingStrategy>Discrete</samplingStrategy>
+        <spatialSamplingResolution>10 m</spatialSamplingResolution>
+        <temporalSamplingInterval>radiosoundings measure at different height level each 1-2 seconds and cover the entire
+            range from the ground to the LS in about one hour.
+        </temporalSamplingInterval>
+        <scheduleOfObservation>Radiosoudings are performed at minimum one per week; station also operating within GRUAN
+            or RAOB perfumed regular soundings once or twice a day at 00 and 12 UT.
+        </scheduleOfObservation>
+    </sampling>
+    <dataProcessingAndReporting>
+        <dataProcessingMethodsAndAlgorithms>gruan_DP_calcRsDataProduct.pro
+            ref:www.atmos-meas-tech.net/7/4463/2014/amt-7-4463-2014.pdf
+        </dataProcessingMethodsAndAlgorithms>
+        <processingAnalysisCentre>GRUAN Lead Centre (Lindenberg, DWD, Germany)</processingAnalysisCentre>
+        <softwareProcessorAndVersion>GRUAN IDL Library, 2012-08</softwareProcessorAndVersion>
+        <levelOfData>Level II</levelOfData>
+        <dataFormat>NetCDF-3/CDM</dataFormat>
+        <versionOfDataFormat>0.8</versionOfDataFormat>
+        <referenceTime>Time Server</referenceTime>
+        <numericalResolution>Temperature = 0.1°C; pressure = 0.1 hPa; Humidity = 1%.</numericalResolution>
+    </dataProcessingAndReporting>
+    <dataQuality>
+        <uncertaintyOfMeasurement>short_wave_radiation standard_error - min: 0.0, alt: 768.18054 - max: 0.0, alt:
+            768.18054
+            air_temperature correlated_uncertainty - min: 0.096763715, alt: 768.18054 - max: 0.0969358, alt: 23749.096
+            air_temperature standard_error - min: 0.09676371, alt: 768.18054 - max: 0.33061236, alt: 18858.016
+            altitude standard_error - min: 4.041276, alt: 844.93304 - max: 12.822068, alt: 16422.078
+            air_pressure standard_error - min: 0.2435236, alt: NaN - max: 0.5158767, alt: 768.18054
+            relative_humidity correlated_uncertainty - min: 0.01005461, alt: 33601.09 - max: 0.035372447, alt: 7357.5806
+            relative_humidity standard_error - min: 0.010058254, alt: 34039.7 - max: 0.040398102, alt: 7848.6416
+            wind_from_direction standard_error - min: 0.3643599, alt: 13168.95 - max: 9.551287, alt: 773.1315
+            wind_speed standard_error - min: 0.23003519, alt: 13659.842 - max: 1.8389467, alt: 16817.291
+        </uncertaintyOfMeasurement>
+        <qualityFlag>
+            <qualityFlag_OGC>Good</qualityFlag_OGC>
+        </qualityFlag>
+        <qualityFlaggingSystem>Other quality flagging system</qualityFlaggingSystem>
+        <traceability>Traceable to international standard</traceability>
+    </dataQuality>
+    <ownershipAndDataPolicy>
+        <supervisingOrganization>IMAA - Institute of Methodologies for Environmental Analysis; CNR - National Research
+            Council
+        </supervisingOrganization>
+        <dataPolicyUseConstraints>WMOEssential</dataPolicyUseConstraints>
+    </ownershipAndDataPolicy>
+    <contact>
+        <contact>IMAA - Institute of Methodologies for Environmental Analysis; CNR - National Research Council</contact>
+    </contact>
+</gaiaClimMetadataType>

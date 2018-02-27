@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <xs:simpleType name="CoordinatesSourceDevice_Type">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="GPS" />
+            <xs:enumeration value="ARGOS DOPPLER" />
+            <xs:enumeration value="IRIDIUM DOPPLER" />
+            <xs:enumeration value="ARGOS Kalman" />
+            <xs:enumeration value="GALILEO" />
+            <xs:enumeration value="LORAN" />
+            <xs:enumeration value="Surveyed" />
+            <xs:enumeration value="From map" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="CoordinatesReference_Type">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="WGS84" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="MeaningOfTimeStamp_Type">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Beginning">
+                <xs:annotation>
+                    <xs:documentation>
+                        Time stamps indicate the beginning of a period covering the range up to but excluding the following time stamp.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="End">
+                <xs:annotation>
+                    <xs:documentation>
+                        Time stamps indicate the end of a period covering the range up to but excluding the preceding time stamp.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="Middle">
+                <xs:annotation>
+                    <xs:documentation>
+                        Time stamps indicate the middle of a period beginning at the middle of the range described by this and the
+                        preceding time stamp and ending right before the middle of the range described by this and the following time
+                        stamp.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

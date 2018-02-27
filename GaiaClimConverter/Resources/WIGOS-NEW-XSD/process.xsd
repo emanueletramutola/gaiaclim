@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://def.wmo.int/wigosobs/2015" xmlns:wigos="http://def.wmo.int/wigosobs/2015" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:gmlexr="http://www.opengis.net/gml/3.3/exr" xmlns:metce="http://def.wmo.int/metce/2013">
+	<xs:include schemaLocation="facilities.xsd"/>
+	<xs:include schemaLocation="wigos.xsd"/>
+	<xs:import namespace="http://def.wmo.int/metce/2013" schemaLocation="http://schemas.wmo.int/metce/1.0/metce.xsd"/>
+	<xs:import namespace="http://www.opengis.net/gml/3.3/exr" schemaLocation="http://schemas.opengis.net/gml/3.3/extdEncRule.xsd"/>
+	<xs:import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+	<xs:element name="Deployment" type="wigos:DeploymentType" substitutionGroup="gml:AbstractFeature">
+		<xs:annotation>
+			<xs:documentation>A Deployment describes the deployment of equipment at a monitoring facility for a period of time. The deployment describes the configuration of the equipment for that time period.
+
+A Deployment can describe any period of time  - equipment could be deployed for less than a day (e.g. a mobile sensor deployed in the field), or it could be deployed for many years.
+
+A defining characteristic of the Deployment is that the configuration described in the Deployment remains unchanged for the duration of the deployment. If the configuration changes then a new Deployment must be recorded.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="DeploymentType">
+		<xs:complexContent>
+			<xs:extension base="gml:AbstractFeatureType">
+				<xs:sequence>
+					<xs:element name="deploymentPeriod" type="gml:TimePeriodPropertyType">
+						<xs:annotation>
+							<xs:documentation>The period of time for which this deployment configuration was/is in place. (Note: this will most likely correspond with the OM_Observation phenomenonTime) [Phase 1]</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="heightAboveLocalReferenceSurface" type="gml:MeasureType" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>5-05 Vertical distance of sensor from specified reference level. Up is defined as positive. Down (e.g. below ship) is defined as negative. [Phase 1]</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="localReferenceSurfaceDescription" type="xs:string" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>5-05 Description of the specified reference surface [Phase 1]</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="maintenanceSchedule" type="xs:string" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>5-10 A description (and schedule) of maintenance that is routinely performed on an instrument [Phase 3]</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="configuration" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>5-06 Description of any shielding or configuration/setup of the instrumentation [Phase 3]</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="controlSchedule" type="xs:string" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>5-07 Description of schedule for calibrations or verification of instrument. [Phase 3]</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="instrumentOperatingStatus" type="gml:ReferenceType" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>5-04 The operational status of the instrument when deployed (Operational, testing etc.). [Phase 3]</xs:documentation>
+							<xs:appinfo>
+								<gmlexr:targetCodeList>InstrumentOperatingStatusType</gmlexr:targetCodeList>
+							</xs:appinfo>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="exposure" type="gml:ReferenceType" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>5-15 The degree to which an instrument is affected by external influences and reflects the value of the observed variable. Value from ExposureType codelist. [Phase 3]</xs:documentation>
+							<xs:appinfo>
+								<gmlexr:targetCodeList>ExposureType</gmlexr:targetCodeList>
+							</xs:appinfo>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="deployedEquipment" type="wigos:EquipmentPropertyType"/>
+					<xs:element name="deployedAt" type="wigos:ObservingFacilityPropertyType">
+						<xs:annotation>
+							<xs:documentation>The EnvironmentalMonitoringFacility where equipment is deployed for the duration of the Deployment.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="DeploymentPropertyType">
+		<xs:sequence minOccurs="0">
+			<xs:element ref="wigos:Deployment"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<xs:attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</xs:complexType>
+	<xs:element name="Process" type="wigos:ProcessType" substitutionGroup="metce:Process">
+		<xs:annotation>
+			<xs:documentation>method
+source
+traceability (a metrology thing)</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="ProcessType">
+		<xs:complexContent>
+			<xs:extension base="metce:ProcessType">
+				<xs:sequence>
+					<xs:element name="deployment" type="wigos:DeploymentPropertyType">
+						<xs:annotation>
+							<xs:documentation>The deployment(s) describe which equipment is deployed, during which timeperiod, and in which configuration.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="sampling" type="wigos:SamplingPropertyType" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="processing" type="wigos:ProcessingPropertyType" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="reporting" type="wigos:ReportingPropertyType">
+						<xs:annotation>
+							<xs:documentation>Details about the reporting procedure for the ObservationCollection</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="extension" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>This extension point is to facilitate the encoding of any other information for complimentary or local purposes such as complying with legislative frameworks.
+However it should not be expected that any extension information will be appropriately processed, stored or made retrievable from any WIGOS systems or services. </xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:complexContent>
+								<xs:extension base="gml:AbstractMemberType">
+									<xs:sequence>
+										<xs:element ref="gml:AbstractObject"/>
+									</xs:sequence>
+								</xs:extension>
+							</xs:complexContent>
+						</xs:complexType>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ProcessPropertyType">
+		<xs:sequence minOccurs="0">
+			<xs:element ref="wigos:Process"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<xs:attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</xs:complexType>
+	<xs:element name="Processing" type="wigos:ProcessingType" substitutionGroup="gml:AbstractObject">
+		<xs:annotation>
+			<xs:documentation>Description of the data processing and reporting.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="ProcessingType">
+		<xs:sequence>
+			<xs:element name="observingMethod" type="gml:ReferenceType" minOccurs="1" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>5-02 The method of measurement/observation used. [Phase 1]</xs:documentation>
+					<xs:appinfo>
+						<gmlexr:targetCodeList>ObservingMethodType</gmlexr:targetCodeList>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="sampleTreatment" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>6-02 Description of chemical or physical treatment of the sample prior to analysis. [Phase 3]</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="dataProcessingDetails" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>7-01 A description of the processing used to generate observations including, if relevant, algorithms used to derive the result. [Phase 3]</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="softwareDetails" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>7-05 Name and version of the software or processor used to derive the values [Phase 3]</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="processingCentre" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>7-02 Center at which the observation is processed.[Phase 2]</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ProcessingPropertyType">
+		<xs:sequence>
+			<xs:element ref="wigos:Processing"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</xs:complexType>
+	<xs:element name="Reporting" type="wigos:ReportingType" substitutionGroup="gml:AbstractObject">
+		<xs:annotation>
+			<xs:documentation>Details about how the observations are reported.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="ReportingType">
+		<xs:sequence>
+			<xs:element name="temporalReportingPeriod" type="xs:duration">
+				<xs:annotation>
+					<xs:documentation>7-03 Time period over which the observed variable is reported. Note that this is a duration (e.g. 1 hour) not specific dates and times. [Phase 1]</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="spatialReportingInterval" type="gml:MeasureType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>7-03 Time period over which the observed variable is reported. [Phase 1]</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="dataFormat" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>7-07 Description of the format in which the observed variable is being provided [Phase 3]</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="dataFormatVersion" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>7-08 Version of the data format [Phase 3]</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="aggregationPeriod" type="gml:ReferenceType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>7-09 Time period over which individual samples/observations are aggregated [Phase 2]</xs:documentation>
+					<xs:appinfo>
+						<gmlexr:targetCodeList>TimeStampMeaningType</gmlexr:targetCodeList>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="referenceTime" type="gml:ReferenceType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>7-10 Time base to which date and time stamps refer. (e.g. NIST time server).  [Phase 2]</xs:documentation>
+					<xs:appinfo>
+						<gmlexr:targetCodeList>ReferenceTimeType</gmlexr:targetCodeList>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="referenceDatum" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>7-11 Reference datum used to convert observed quantity to reported quantity [Phase 1]</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:complexContent>
+						<xs:extension base="gml:AbstractMemberType">
+							<xs:sequence>
+								<xs:element ref="gml:VerticalDatum"/>
+							</xs:sequence>
+						</xs:extension>
+					</xs:complexContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="numericalResolution" type="gml:MeasureType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>7-12 Numerical resolution; a measure of the detail in which a numerical quantity is expressed  [Phase 3]</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="latency" type="xs:duration" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>7-13 Latency of reporting is the typical time taken between completion of the observation and when it is reported. [Phase 3]</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="levelOfData" type="gml:ReferenceType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>7-06 Level of data processing [Phase 2]</xs:documentation>
+					<xs:appinfo>
+						<gmlexr:targetCodeList>LevelOfDataType</gmlexr:targetCodeList>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ReportingPropertyType">
+		<xs:sequence>
+			<xs:element ref="wigos:Reporting"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</xs:complexType>
+	<xs:element name="Sampling" type="wigos:SamplingType" substitutionGroup="gml:AbstractObject">
+		<xs:annotation>
+			<xs:documentation>Description of the sampling used for observations.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="SamplingType">
+		<xs:sequence>
+			<xs:element name="samplingStrategy" type="gml:ReferenceType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>6-03 The strategy used to generate the observed variable. [Phase 1]</xs:documentation>
+					<xs:appinfo>
+						<gmlexr:targetCodeList>SamplingStrategyType</gmlexr:targetCodeList>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="diurnalBaseTime" type="xs:time">
+				<xs:annotation>
+					<xs:documentation>6-07 Time (of day) to which diurnal statistics are referenced [Phase 1]</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="scheduleOfObservation" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>6-08 Description of the schedule of observation. [Phase 1]</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="sourceOfObservation" type="gml:ReferenceType" minOccurs="1" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>5-01: The source of the observation (manual, automatic, visual etc.) [Phase 1]</xs:documentation>
+					<xs:appinfo>
+						<gmlexr:targetCodeList>SourceOfObservationType</gmlexr:targetCodeList>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="samplingProcedureDescription" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>6-01 Description of the procedure(s) involved in obtaining a sample/making an observation. [Phase 3]</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="temporalSamplingInterval" type="xs:duration" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>6-06 Time period (as a duration) between the beginning of consecutive sampling periods. [Phase 3]</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="samplingTimePeriod" type="xs:duration" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>6-04 The period of time over which a measurement is taken. This value is a duration, e.g. 1 hour, not specific times and dates. [Phase 3]</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="samplingResolution" type="gml:MeasureType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>6-05 The spatial sampling resolution is the size of the smallest observable object. The value of this property may be supported by explanatory information in samplingResolutionDescription. [Phase 2]</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="samplingResolutionDetails" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>6-05 Explanatory information about the exact meaning of the value of samplingResolution. [Phase 2]</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SamplingPropertyType">
+		<xs:sequence>
+			<xs:element ref="wigos:Sampling"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</xs:complexType>
+</xs:schema>

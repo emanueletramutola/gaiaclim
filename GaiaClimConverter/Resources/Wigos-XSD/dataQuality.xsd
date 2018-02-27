@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <xs:complexType name="DataQuality_Type">
+        <xs:sequence>
+            <xs:element name="uncertaintyOfMeasurement" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Non-negative parameter, associated with the result of a measurement, that characterizes
+                        the dispersion of the values that could reasonably be attributed to the observation/measurand
+
+                        NOTE 1:
+                        In principle, an uncertainty statement needs to be reported for each observation, as it
+                        can change from observation to observation. If the uncertainty of observations remain
+                        virtually constant over time, it is sufficient to report the uncertainty at the beginning of the
+                        period and then again when substantial changes of the uncertainty occur. The actual
+                        uncertainty statements should be reported with the observations.
+
+                        NOTE 2:
+                        Complex observations such as gridded satellite imagery may contain large error
+                        covariance matrices that are not useful for the purpose of this standard. Such
+                        information must be kept with the data, and it is sufficient to report an aggregate (e.g.,
+                        mean or median) uncertainty in the metadata.
+
+                        NOTE 3:
+                        Uncertainty may be expressed, for example, as a standard deviation (or a given multiple
+                        of it), or the half-width of an interval having a stated level of confidence.
+
+                        NOTE 4:
+                        Uncertainty of measurement comprises, in general, many components. Some of these
+                        components may be evaluated from the statistical distribution of the results of series of
+                        measurements and can be characterized by experimental standard deviations. The other
+                        components, which also can be characterized by standard deviations, are evaluated
+                        from assumed probability distributions based on experience or other information.
+
+                        NOTE 5:
+                        It is understood that the result of the measurement is the best estimate of the value of
+                        the measurand, and that all components of uncertainty, including those arising from
+                        systematic effects, such as components associated with corrections and reference
+                        standards, contribute to the dispersion.
+
+                        EXAMPLE:
+                        A thermometer reading may yield a value of 13.7 °C. A quality assessment of that
+                        observation may indicate that it has an expanded uncertainty of +/– 0.3 °C (k=2), where
+                        k=2 is a coverage factor corresponding approximately to a confidence interval of 95%
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="procedureUsedToEstimateUncertainty" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        A reference or link pointing to a document describing the procedures/algorithms used to derive the uncertainty statement
+
+                        NOTE:
+                        Uncertainty is a well-defined term, and guidance material exists to assist in the
+                        assessment of the uncertainty of observations and a formulation of adequate uncertainty
+                        statements. The authoritative source is the “Guide for the Expression of Uncertainty in
+                        Measurement” (JCGM 100:2008).
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="qualityFlag" type="QualityFlag_Type"/>
+            <xs:element name="qualityFlaggingSystem" type="QualityFlaggingSystem_Type"/>
+            <xs:element name="traceability" type="Traceability_Type"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="QualityFlag_Type">
+        <xs:annotation>
+            <xs:documentation>
+                An ordered list of qualifiers indicating the result of a quality control process applied to the observation.
+
+                NOTE 1:
+                BUFR code table series 0-33 contains data quality flags/definitions.
+
+                NOTE 2:
+                To be recorded by data providers for each individual observation
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="qualityFlag_BUFR" type="QualityFlag_BUFR_Type" minOccurs="0" />
+            <xs:element name="qualityFlag_OGC" type="QualityFlag_OGC_Type" minOccurs="0" />
+        </xs:sequence>
+    </xs:complexType>
+    <xs:simpleType name="QualityFlag_BUFR_Type">
+        <xs:annotation>
+            <xs:documentation>
+                From BUFR code table 0 33 020 (WMO, 2013) - Code table under development
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Good" />
+            <xs:enumeration value="Inconsistent" />
+            <xs:enumeration value="Doubtful" />
+            <xs:enumeration value="Wrong" />
+            <xs:enumeration value="Not checked" />
+            <xs:enumeration value="Has been changed" />
+            <xs:enumeration value="Estimated" />
+            <xs:enumeration value="Missing value" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="QualityFlag_OGC_Type">
+        <xs:annotation>
+            <xs:documentation>
+                From OGC WaterML 2.0
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Good">
+                <xs:annotation>
+                    <xs:documentation>
+                        The data has been examined and represents a reliable measurement.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="Suspect">
+                <xs:annotation>
+                    <xs:documentation>
+                        The data should be treated as suspect.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="Estimate">
+                <xs:annotation>
+                    <xs:documentation>
+                        The data is an estimate only, not a direct measurement.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="Poor">
+                <xs:annotation>
+                    <xs:documentation>
+                        The data should be considered as low quality and may have been rejected.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="Unchecked">
+                <xs:annotation>
+                    <xs:documentation>
+                        The data has not been checked by any qualitative method.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="Missing">
+                <xs:annotation>
+                    <xs:documentation>
+                        The data is missing.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="QualityFlaggingSystem_Type">
+        <xs:annotation>
+            <xs:documentation>
+                Reference to the system used to flag the quality of the observation.
+
+                NOTE 1:
+                At present, there is no single, globally accepted flagging system. The purpose of this
+                element is to make reference to the flagging system used. This reference should either
+                be a URL to a document explaining the meaning of the quality flag, or a link to a code
+                table where this information can be found.
+                NOTE 2: The use of the BUFR quality codes listed above is recommended (WMO, 2013)
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Unknown">
+                <xs:annotation>
+                    <xs:documentation>
+                        Quality flag system not known
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="WMO BUFR table 0 33 020">
+                <xs:annotation>
+                    <xs:documentation>
+                        http://codes.wmo.int/bufr4/codeflag/0-33-020
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="Other quality flagging system">
+                <xs:annotation>
+                    <xs:documentation>
+                        Quality flags are specified according to another system
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="Traceability_Type">
+        <xs:annotation>
+            <xs:documentation>
+                Statement defining traceability to a standard, including sequence of measurement standards and
+                calibrations that is used to relate a measurement result to a reference [VIM 3 2.4.2]
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Unknown">
+                <xs:annotation>
+                    <xs:documentation>
+                        Traceability not known
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="Traceable to international standard">
+                <xs:annotation>
+                    <xs:documentation>
+                        Traceable to an international standard
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="Traceable to other standard">
+                <xs:annotation>
+                    <xs:documentation>
+                        Not traceable to an international standard
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

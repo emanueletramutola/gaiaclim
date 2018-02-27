@@ -1,0 +1,153 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+           targetNamespace="http://def.wmo.int/wigosobs/2015" version="0.2" xmlns:gco="http://www.isotc211.org/2005/gco"
+           xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gml="http://www.opengis.net/gml/3.2"
+           xmlns:om="http://www.opengis.net/om/2.0" xmlns:opm="http://def.wmo.int/opm/2013"
+           xmlns:sam="http://www.opengis.net/sampling/2.0" xmlns:sams="http://www.opengis.net/samplingSpatial/2.0"
+           xmlns:wigos="http://def.wmo.int/wigosobs/2015">
+    <xs:include schemaLocation="process.xsd"/>
+    <xs:include schemaLocation="logs.xsd"/>
+    <xs:include schemaLocation="obs.xsd"/>
+    <xs:include schemaLocation="facilities.xsd"/>
+    <xs:include schemaLocation="wigos.xsd"/>
+    <xs:import namespace="http://www.isotc211.org/2005/gmd"
+               schemaLocation="http://schemas.opengis.net/iso/19139/20070417/gmd/gmd.xsd"/>
+    <xs:import namespace="http://www.opengis.net/sampling/2.0"
+               schemaLocation="http://schemas.opengis.net/sampling/2.0/samplingFeature.xsd"/>
+    <xs:import namespace="http://www.opengis.net/samplingSpatial/2.0"
+               schemaLocation="http://schemas.opengis.net/samplingSpatial/2.0/spatialSamplingFeature.xsd"/>
+    <xs:import namespace="http://www.opengis.net/om/2.0"
+               schemaLocation="http://schemas.opengis.net/om/2.0/observation.xsd"/>
+    <xs:import namespace="http://www.opengis.net/gml/3.2"
+               schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+    <xs:annotation>
+        <xs:documentation>Application Schema for WMO WIGOS Observations Metadata. WIGOS is the WMO Integrated Global
+            Observing System.
+        </xs:documentation>
+    </xs:annotation>
+    <xs:element name="WIGOSMetadataRecord" substitutionGroup="gml:AbstractFeature" type="wigos:WIGOSMetadataRecordType">
+        <xs:annotation>
+            <xs:documentation>The WIGOSDocument is a container for WIGOS information for the purposes of packaging the
+                information for delivery to, or transfer between, systems.
+            </xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    <xs:complexType name="WIGOSMetadataRecordType">
+        <xs:complexContent>
+            <xs:extension base="gml:AbstractFeatureType">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="extension">
+                        <xs:annotation>
+                            <xs:documentation>This extension point is to facilitate the encoding of any other
+                                information for complimentary or local purposes such as complying with legislative
+                                frameworks.
+                                However it should not be expected that any extension information will be appropriately
+                                processed, stored or made retrievable from any WIGOS systems or services.
+                            </xs:documentation>
+                        </xs:annotation>
+                        <xs:complexType>
+                            <xs:complexContent>
+                                <xs:extension base="gml:AbstractMemberType">
+                                    <xs:sequence>
+                                        <xs:element ref="gml:AbstractObject"/>
+                                    </xs:sequence>
+                                </xs:extension>
+                            </xs:complexContent>
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element name="wigosIdentifier" type="xs:anyURI">
+                        <xs:annotation>
+                            <xs:documentation>Identifier which identifies the facility this record refers to.
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>name of this metadata record</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element maxOccurs="1" minOccurs="0" name="description" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>description of this metadata record</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="observingFacilityId" type="xs:anyURI">
+                        <xs:annotation>
+                            <xs:documentation>Identifier which identifies the observing facility this
+                                WIGOSMetadataRecord refers to. The observing facility may be defined in this record
+                                (facilityDefinition) or it may have already been defined and this WIGOSMetadataRecord is
+                                providing additional information relevant to this facility (e.g. a new observation
+                                collection).
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="recordOwner">
+                        <xs:annotation>
+                            <xs:documentation>The person or organisation responsible for this metadata record
+                            </xs:documentation>
+                        </xs:annotation>
+                        <xs:complexType>
+                            <xs:complexContent>
+                                <xs:extension base="gml:AbstractMetadataPropertyType">
+                                    <xs:sequence>
+                                        <xs:element minOccurs="0" ref="gmd:CI_ResponsibleParty"/>
+                                    </xs:sequence>
+                                    <xs:attributeGroup ref="gml:AssociationAttributeGroup"/>
+                                </xs:extension>
+                            </xs:complexContent>
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="facilityDefinition"
+                                type="wigos:ObservingFacilityPropertyType">
+                        <xs:annotation>
+                            <xs:documentation>A container element to hold a definition of an ObservingFacility
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="equipmentDefinition">
+                        <xs:annotation>
+                            <xs:documentation>A container element to hold a definition of Equipment</xs:documentation>
+                        </xs:annotation>
+                        <xs:complexType>
+                            <xs:complexContent>
+                                <xs:extension base="gml:AbstractMemberType">
+                                    <xs:sequence>
+                                        <xs:element ref="wigos:Equipment"/>
+                                    </xs:sequence>
+                                </xs:extension>
+                            </xs:complexContent>
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="collectionDefinition">
+                        <xs:annotation>
+                            <xs:documentation>A container element to hold a definition of an ObservationCollection
+                            </xs:documentation>
+                        </xs:annotation>
+                        <xs:complexType>
+                            <xs:complexContent>
+                                <xs:extension base="gml:AbstractMemberType">
+                                    <xs:sequence>
+                                        <xs:element ref="wigos:ObservationCollection"/>
+                                    </xs:sequence>
+                                </xs:extension>
+                            </xs:complexContent>
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="observationDefinition"
+                                type="om:OM_ObservationPropertyType">
+                        <xs:annotation>
+                            <xs:documentation>A container element to hold a definition of an OM_Observation
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="WIGOSMetadataRecordPropertyType">
+        <xs:sequence minOccurs="0">
+            <xs:element ref="wigos:WIGOSMetadataRecord"/>
+        </xs:sequence>
+        <xs:attributeGroup ref="gml:AssociationAttributeGroup"/>
+        <xs:attributeGroup ref="gml:OwnershipAttributeGroup"/>
+    </xs:complexType>
+</xs:schema>

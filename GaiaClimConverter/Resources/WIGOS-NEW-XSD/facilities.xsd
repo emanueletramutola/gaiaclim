@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://def.wmo.int/wigosobs/2015" xmlns:wigos="http://def.wmo.int/wigosobs/2015" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gmlexr="http://www.opengis.net/gml/3.3/exr">
+	<xs:include schemaLocation="logs.xsd"/>
+	<xs:import namespace="http://www.opengis.net/gml/3.3/exr" schemaLocation="http://schemas.opengis.net/gml/3.3/extdEncRule.xsd"/>
+	<xs:import namespace="http://www.isotc211.org/2005/gmd" schemaLocation="http://schemas.opengis.net/iso/19139/20070417/gmd/gmd.xsd"/>
+	<xs:import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+	<xs:element name="AbstractEnvironmentalMonitoringFacility" type="wigos:AbstractEnvironmentalMonitoringFacilityType" substitutionGroup="wigos:AbstractMonitoringFeature" abstract="true">
+		<xs:annotation>
+			<xs:documentation>An abstract class for environmental monitoring facilities.
+An environmental monitoring facility may be a station, a platform (moving or stationary), or it may be a sensor or an instrument.
+
+WIGOS defines two concrete specialisations: ObservingFacility (to represent stations/platforms) and Equipment (to represent sensors/instruments).
+
+
+INSPIRE note: The WIGOS specialisations of AbstractEnvironmentalMonitoringFacility (ObservingFacility &amp; Equipment) can both be mapped conceptually to the INSPIRE EF EnvironmentalMonitoringFacility</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="AbstractEnvironmentalMonitoringFacilityType" abstract="true">
+		<xs:complexContent>
+			<xs:extension base="wigos:AbstractMonitoringFeatureType">
+				<xs:sequence>
+					<xs:element name="extension" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>This extension point is to facilitate the encoding of any other information for complimentary or local purposes such as complying with legislative frameworks.
+However it should not be expected that any extension information will be appropriately processed, stored or made retrievable from any WIGOS systems or services.  [Phase 1]</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:complexContent>
+								<xs:extension base="gml:AbstractMemberType">
+									<xs:sequence>
+										<xs:element ref="gml:AbstractObject"/>
+									</xs:sequence>
+								</xs:extension>
+							</xs:complexContent>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="wigosIdentifier" type="xs:anyURI">
+						<xs:annotation>
+							<xs:documentation>A WIGOS Identifier for this object according to the WIGOS identifier scheme. [Phase 1]</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="name" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>A name for this resource [Phase 1]</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="description" type="xs:string" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>A brief description [Phase 1]</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="additionalDescription" type="xs:string" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Further descriptive information [Phase 1]</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="onlineResource" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>An online resource containing additional information about the facility or equipment [Phase 1]</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:complexContent>
+								<xs:extension base="gml:AbstractMetadataPropertyType">
+									<xs:sequence>
+										<xs:element ref="gmd:CI_OnlineResource"/>
+									</xs:sequence>
+								</xs:extension>
+							</xs:complexContent>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="geospatialLocation" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>3-07
+Position in space defining the location of the environmental monitoring station/platform at the time of observation.
+
+Also
+5-12 
+Geospatial location of instrument/sensor 
+
+This element must include the geospatial reference system used for the location.
+
+[Phase 1]</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:complexContent>
+								<xs:extension base="gml:AbstractMemberType">
+									<xs:sequence>
+										<xs:element ref="wigos:TimestampedLocation"/>
+									</xs:sequence>
+								</xs:extension>
+							</xs:complexContent>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="geopositioningMethod" type="gml:ReferenceType" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>3-07
+Position in space defining the location of the environmental monitoring station/platform at the time of observation.
+
+Also
+5-12 
+Geospatial location of instrument/sensor
+
+This element must include the geospatial reference system used for the location. [Phase 1]</xs:documentation>
+							<xs:appinfo>
+								<gmlexr:targetCodeList>CoordinateSource</gmlexr:targetCodeList>
+							</xs:appinfo>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="responsibleParty">
+						<xs:annotation>
+							<xs:documentation>The person or organisation responsible for the facility/equipment</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:complexContent>
+								<xs:extension base="gml:AbstractMetadataPropertyType">
+									<xs:sequence>
+										<xs:element ref="gmd:CI_ResponsibleParty"/>
+									</xs:sequence>
+								</xs:extension>
+							</xs:complexContent>
+						</xs:complexType>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="AbstractEnvironmentalMonitoringFacilityPropertyType">
+		<xs:sequence minOccurs="0">
+			<xs:element ref="wigos:AbstractEnvironmentalMonitoringFacility"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<xs:attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</xs:complexType>
+	<xs:element name="AbstractMonitoringFeature" type="wigos:AbstractMonitoringFeatureType" substitutionGroup="gml:AbstractFeature" abstract="true"/>
+	<xs:complexType name="AbstractMonitoringFeatureType" abstract="true">
+		<xs:complexContent>
+			<xs:extension base="gml:AbstractFeatureType">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="AbstractMonitoringFeaturePropertyType">
+		<xs:sequence minOccurs="0">
+			<xs:element ref="wigos:AbstractMonitoringFeature"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<xs:attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</xs:complexType>
+	<xs:element name="Equipment" type="wigos:EquipmentType" substitutionGroup="wigos:AbstractEnvironmentalMonitoringFacility">
+		<xs:annotation>
+			<xs:documentation>Equipment or instrument used to make observations.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="EquipmentType">
+		<xs:complexContent>
+			<xs:extension base="wigos:AbstractEnvironmentalMonitoringFacilityType">
+				<xs:sequence>
+					<xs:element name="instrumentCapability" type="xs:string" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>5-03 Intrinsic capability of the measurement/observing method to measure the designated element including range, stability, precision etc.  [Phase 1]</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="specificationLink" type="xs:anyURI" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>5-03 Link to manufacturers (or other) specification describing the equipment. [Phase 1]</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="modelNumber" type="xs:string" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>5-09 Model number of the equipment [Phase 3]</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="serialNumber" type="xs:string" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>5-09 Serial number of the equipment [Phase 3]</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="manufacturer" type="xs:string" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>5-09 manufacturer of the equipment [Phase 3]</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="firmwareVersion" type="xs:string" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>5-09 firmware version of the equipment [Phase 3]</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="equipmentLog" type="wigos:EquipmentLogPropertyType"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="EquipmentPropertyType">
+		<xs:sequence minOccurs="0">
+			<xs:element ref="wigos:Equipment"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<xs:attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</xs:complexType>
+	<xs:element name="ObservingFacility" type="wigos:ObservingFacilityType" substitutionGroup="wigos:AbstractEnvironmentalMonitoringFacility">
+		<xs:annotation>
+			<xs:documentation>The observing facility; this could be a fixed station, moving equipment or a remote sensing platform.
+
+[NOTE - should review INSPIRE model for EMF - we may want to align with some attributes, but it is unlikely to be wholly appropriate]
+
+Additional definitions:
+
+“a colocation of observing equipment managed by a single entity”
+“an administrative entity"
+
+Also note that the terms "station" and "platform" tend to be used interchangeably.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="ObservingFacilityType">
+		<xs:complexContent>
+			<xs:extension base="wigos:AbstractEnvironmentalMonitoringFacilityType">
+				<xs:sequence>
+					<xs:element name="wmoRegion" type="gml:ReferenceType">
+						<xs:annotation>
+							<xs:documentation>3-01 The WMO region this facility belongs in [Phase 1]</xs:documentation>
+							<xs:appinfo>
+								<gmlexr:targetCodeList>WMORegionType</gmlexr:targetCodeList>
+							</xs:appinfo>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="territoryName" type="gml:ReferenceType">
+						<xs:annotation>
+							<xs:documentation>3-02 The WMO territory this facilty belongs in [Phase 1]</xs:documentation>
+							<xs:appinfo>
+								<gmlexr:targetCodeList>TerritoryType</gmlexr:targetCodeList>
+							</xs:appinfo>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="facilityType" type="gml:ReferenceType" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>3-04- The type of the facility from the MonitoringFacilityType codelist.  [Phase 2]</xs:documentation>
+							<xs:appinfo>
+								<gmlexr:targetCodeList>MonitoringFacilityType</gmlexr:targetCodeList>
+							</xs:appinfo>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="facilityModel" type="xs:string" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>3-05 The model of the monitoring equipment used at the station/platform. e.g. 'Landsat 8', 'Almos Automatic Weather Station', 'Airbus A340-600', [Phase 3]</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="communicationMethod" type="gml:ReferenceType" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>3-08 The primary data communication method, from the DataCommunicationMethodType codelist [Phase 2]</xs:documentation>
+							<xs:appinfo>
+								<gmlexr:targetCodeList>DataCommunicationMethodType</gmlexr:targetCodeList>
+							</xs:appinfo>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="reportingStatus" type="gml:ReferenceType">
+						<xs:annotation>
+							<xs:documentation>3-09 Declared reporting status of the facility/station from the ReportingStatusType codelist [Phase 1]</xs:documentation>
+							<xs:appinfo>
+								<gmlexr:targetCodeList>ReportingStatusType</gmlexr:targetCodeList>
+							</xs:appinfo>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="surfaceCover" type="gml:ReferenceType" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>4-01 - The observed (bio)physical cover on the earth's surface in the vicinity of the observations. 
+Only applies under certain conditions – so not relevant for satellite data etc. Only when instrument is located in place. From the LandCoverType codelist [Phase 3]</xs:documentation>
+							<xs:appinfo>
+								<gmlexr:targetCodeList>LandCoverType</gmlexr:targetCodeList>
+							</xs:appinfo>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="surfaceCoverClassification" type="gml:ReferenceType" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>4-02 - reference to a surface cover classification type
+Only applies under certain conditions – so not relevant for satellite data etc. Only when instrument is located in place. From the SurfaceCoverClassificationType codelist [Phase 3]</xs:documentation>
+							<xs:appinfo>
+								<gmlexr:targetCodeList>SurfaceCoverClassificationType</gmlexr:targetCodeList>
+							</xs:appinfo>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="additionalSiteInformation" type="xs:anyURI" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>4-05 Non-formalized information about the location and its surroundings at which an observation is made and that may influence it. [Phase 2]</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="localTopography" type="gml:ReferenceType" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>4-03 The local topography from the LocalTopographyType codelist [Phase 3]</xs:documentation>
+							<xs:appinfo>
+								<gmlexr:targetCodeList>LocalTopographyType</gmlexr:targetCodeList>
+							</xs:appinfo>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="relativeElevation" type="gml:ReferenceType" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>4-03 The relative elevation from the RelativeElevationType codelist [Phase 3]</xs:documentation>
+							<xs:appinfo>
+								<gmlexr:targetCodeList>RelativeElevationType</gmlexr:targetCodeList>
+							</xs:appinfo>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="altitudeOrDepth" type="gml:ReferenceType" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>4-03 The altitude/depth from the AltitudeOrDepthTypeCodelist [Phase 3]</xs:documentation>
+							<xs:appinfo>
+								<gmlexr:targetCodeList>AltitudeOrDepthType</gmlexr:targetCodeList>
+							</xs:appinfo>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="topographicContext" type="gml:ReferenceType" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>4-03 The topographic context. From the TopographicContextType codelist [Phase 3]</xs:documentation>
+							<xs:appinfo>
+								<gmlexr:targetCodeList>TopographicContextType</gmlexr:targetCodeList>
+							</xs:appinfo>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="facilityLog" type="wigos:FacilityLogPropertyType" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="hostedEquipment" type="wigos:EquipmentPropertyType" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Where equipment is fixed long term to a particular facility it is defined as being hostedEquipment on that facility.
+
+INSPIRE note: hostedEquipment would be called 'narrower' if mapping between EnvironmentalMonitoringFacilities</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ObservingFacilityPropertyType">
+		<xs:sequence minOccurs="0">
+			<xs:element ref="wigos:ObservingFacility"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<xs:attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</xs:complexType>
+	<xs:element name="TimestampedLocation" type="wigos:TimestampedLocationType" substitutionGroup="gml:AbstractObject">
+		<xs:annotation>
+			<xs:documentation>A TimestampedLocation is a geospatial location accompanied by a timestamp indicating the time from which that location is considered to be valid.
+
+If known an end time may also be provided.
+
+In WIGOS an ObservingFacilty or Equipment may carry multiple locations which are valid over different periods of time.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="TimestampedLocationType">
+		<xs:sequence>
+			<xs:element name="validTimePeriod" type="gml:TimePeriodPropertyType">
+				<xs:annotation>
+					<xs:documentation>The time period for which this location is known to be valid.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="location" type="gml:GeometryPropertyType">
+				<xs:annotation>
+					<xs:documentation>A geospatial location. For Phase 1 of WIGOS this will always be a point location. [Phase 1]</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TimestampedLocationPropertyType">
+		<xs:sequence>
+			<xs:element ref="wigos:TimestampedLocation"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</xs:complexType>
+</xs:schema>

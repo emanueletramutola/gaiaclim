@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <xs:complexType name="OwnershipAndDataPolicy_Type">
+        <xs:annotation>
+            <xs:documentation>
+                Specifies who is responsible for the observation and owns it.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="supervisingOrganization" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        Name of organization who owns the observation
+
+                        EXAMPLES:
+                        for satellite operators
+                        EUMETSAT, ESA, NOAA, NASA, CMA, RapidEye, ISRO
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="dataPolicyUseConstraints" type="DataPolicyUseConstraints_Type"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:simpleType name="DataPolicyUseConstraints_Type">
+        <xs:annotation>
+            <xs:documentation>
+                Details relating to the use and limitations surrounding data imposed by the supervising organization
+
+                NOTE:
+                Only one single use constraint with a value taken from
+                WMO_DataLicenseCode is allowed to ensure unambiguity. (WMO, 2013b, p15)
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:annotation>
+                <xs:documentation>
+                    WMO 2013a, Table 14
+                </xs:documentation>
+            </xs:annotation>
+            <xs:enumeration value="WMOEssential">
+                <xs:annotation>
+                    <xs:documentation>
+                        WMO Essential Data: free and unrestricted international exchange of basic data and products.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="WMOAdditional">
+                <xs:annotation>
+                    <xs:documentation>
+                        WMO Additional Data: free and unrestricted access to data and products exchanged under the auspices of WMO to
+                        the research and education communities for non-commercial activities. A more precise definition of the data policy may
+                        be additionally supplied within the metadata. In all cases it shall be the responsibility of the data consumer to ensure
+                        that they understand the data policy specified by the data provider – which may necessitate dialogue with the data
+                        publisher for confirmation of terms and conditions.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="WMOOther">
+                <xs:annotation>
+                    <xs:documentation>
+                        Data identified for global distribution via WMO infrastructure (GTS / WIS) that is not covered by WMO Resolution 25
+                        neither WMO Resolution 40; e.g. aviation OPMET data. Data marked with “WMOOther” data policy shall be treated like
+                        “WMOAdditional” where a more precise definition of the data policy may be additionally supplied within the metadata.
+                        In all cases it shall be the responsibility of the data consumer to ensure that they understand the data policy specified
+                        by the data provider – which may necessitate dialogue with the data publisher for confirmation of terms and conditions.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

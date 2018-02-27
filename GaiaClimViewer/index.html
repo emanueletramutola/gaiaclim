@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <title>Gaia-Clim visualization tool</title>
+    <script src="../../Build/Cesium/Cesium.js"></script>
+
+    <style>
+      @import url(../../Build/Cesium/Widgets/widgets.css);
+      html, body, #cesiumContainer {
+          width: 100%; height: 100%; margin: 0; padding: 0; overflow: hidden;
+      }
+    </style>
+
+    <link rel="stylesheet" type="text/css" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/jquery.datetimepicker.min.css"/>
+
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="js/jquery.datetimepicker.full.min.js"></script>
+    <script src="js/filters.js"></script>
+    <script src="js/satellites.js"></script>
+
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+</head>
+<body>
+<div id="cesiumContainer" class="form-group form-group-sm">
+    <div id="filtersBox">
+        <div id="filterECV" class="filters">
+            <div class="title_bar">
+                <span class="label label-default lblTitleFilter">Station filters</span>
+                <img id="resizeECVfilter" src="img/minimize.png" style="float:right" alt="minimize box" title="minimize box" />
+            </div>
+            <div id="filterECVbody">
+                <p id="ecvList"></p>
+                <p id="networkList"></p>
+                <p id="featureTypeList"></p>
+
+                <p class="lblMM"><span class="label label-default lblMM">Maturity Matrix</span></p>
+                <p id="metadataList" class="ddlMM"></p>
+                <p id="documentationList" class="ddlMM"></p>
+                <p id="uncertaintyList" class="ddlMM"></p>
+                <p id="publicList" class="ddlMM"></p>
+                <p id="sustainabilityList" class="ddlMM"></p>
+
+                <button type="button" onclick="reset()" class="btn btn-primary btn-sm" id="btnReset"><b>Reset</b></button>
+            </div>
+        </div>
+
+        <div id="filterSatellite" class="filters">
+            <div class="title_bar">
+                <span class="label label-default lblTitleFilter">Satellite filters</span>
+                <img id="resizeSatellitefilter" src="img/minimize.png" style="float:right" alt="minimize box" title="minimize box" />
+            </div>
+            <div id="filterSatelliteBody">
+                <div id="dateFilter">
+                    <span class="badge">Date</span>
+                    <div>
+                        <p>
+                            <span class="label label-default">begin: </span>
+                            <input class="form-control" type="text" id="date_timepicker_start" value=""/>
+                        </p>
+                    </div>
+                    <div>
+                        <span class="label label-default">end: </span>
+                        <input class="form-control" type="text" id="date_timepicker_end" value="">
+                        <button type="button" class="btn btn-primary btn-sm" onclick="applyFilter(false)" id="goButton">GO!
+                        </button>
+                    </div>
+                </div>
+
+                <p id="satelliteWeatherList"></p>
+                <p id="satelliteWeatherInstrumentsList" class="instrumentList"></p>
+                <p id="satelliteSpaceAndEarthScienceList"></p>
+                <p id="satelliteSpaceAndEarthScienceInstrumentsList" class="instrumentList"></p>
+
+                <!--<div class="clear"></div>-->
+
+                <div id="satelliteButtons">
+                    <button type="button" class="btn btn-primary btn-sm" onclick="swath()" id="swathButton">swath</button>
+                    <button type="button" class="btn btn-primary btn-sm" onclick="footprint()" id="footprintButton">footprint</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <a href="http://www.ciao.imaa.cnr.it/" target="_blank"><img src="img/logo_imaa.png" alt="logo IMAA" id="logoIMAA" /></a>
+</div>
+</body>
+<script>
+    Cesium.BingMapsApi.defaultKey = 'AlIBvRihHoomWVOYtXmHtDPAcU-qZQyp59WytH9yeV6-YI5TyY5vckmhepUGqnu1';
+
+    var west = -53.0;
+    var south = 31.0;
+    var east = 76.0;
+    var north = 66.0;
+
+    var rectangle = Cesium.Rectangle.fromDegrees(west, south, east, north);
+
+    Cesium.Camera.DEFAULT_VIEW_FACTOR = 1;
+    Cesium.Camera.DEFAULT_VIEW_RECTANGLE = rectangle;
+
+    var viewer = new Cesium.Viewer('cesiumContainer');
+    viewer.infoBox.frame.sandbox = "allow-same-origin allow-top-navigation allow-pointer-lock allow-popups allow-forms allow-scripts";
+
+    var baseURL = 'http://localhost:8080/geoserver/station/ows?service=WFS&version=1.1.0&request=GetFeature&outputFormat=json';
+    var baseURLFilter = '&typeName=station:station&CQL_FILTER=';
+    var satelliteURL = 'http://localhost:8080/gaiaclimservice/';
+
+    loadFilters();
+    applyFilter();
+
+    setHiddenSatelliteButtons(true);
+    var intervalFootprint_Weather;
+    var intervalFootprint_Science;
+
+    var showMinimize_StationsFilters = false;
+    $("#resizeECVfilter").click(function(){
+        if (showMinimize_StationsFilters){
+            document.getElementById("resizeECVfilter").src="img/minimize.png";
+        } else {
+            document.getElementById("resizeECVfilter").src="img/maximize.png";
+        }
+
+        showMinimize_StationsFilters = !showMinimize_StationsFilters;
+
+        $("#filterECVbody").slideToggle();
+    });
+
+    var showMinimize_SatelliteFilters = false;
+    $("#resizeSatellitefilter").click(function(){
+        if (showMinimize_SatelliteFilters){
+            document.getElementById("resizeSatellitefilter").src="img/minimize.png";
+            //document.getElementById("filterSatellite").style.display = "block";
+        } else {
+            document.getElementById("resizeSatellitefilter").src="img/maximize.png";
+            //document.getElementById("filterSatellite").style.height = "auto";
+        }
+
+        showMinimize_SatelliteFilters = !showMinimize_SatelliteFilters;
+
+        $("#filterSatelliteBody").slideToggle();
+    });
+
+    //set min & max date in the date range
+    jQuery(function(){
+     jQuery('#date_timepicker_start').datetimepicker({
+      format:'Y/m/d H:i',
+      onShow:function( ct ){
+       this.setOptions({
+        maxDate:jQuery('#date_timepicker_end').val()?jQuery('#date_timepicker_end').val():false
+       })
+      },
+      timepicker:true
+     });
+     jQuery('#date_timepicker_end').datetimepicker({
+      format:'Y/m/d H:i',
+      onShow:function( ct ){
+       this.setOptions({
+        minDate:jQuery('#date_timepicker_start').val()?jQuery('#date_timepicker_start').val():false
+       })
+      },
+      timepicker:true
+     });
+    });
+
+    function coordinatesOnMouse(){
+        var scene = viewer.scene;
+        var handler;
+
+        var entity = viewer.entities.add({
+                label : {
+                    show : false,
+                    showBackground : true,
+                    font : '14px monospace',
+                    horizontalOrigin : Cesium.HorizontalOrigin.LEFT,
+                    verticalOrigin : Cesium.VerticalOrigin.TOP,
+                    pixelOffset : new Cesium.Cartesian2(15, 0)
+                }
+            });
+
+        // Mouse over the globe to see the cartographic position
+        handler = new Cesium.ScreenSpaceEventHandler(scene.canvas);
+        handler.setInputAction(function(movement) {
+            var cartesian = viewer.camera.pickEllipsoid(movement.endPosition, scene.globe.ellipsoid);
+            if (cartesian) {
+                var cartographic = Cesium.Cartographic.fromCartesian(cartesian);
+                var longitudeString = Cesium.Math.toDegrees(cartographic.longitude).toFixed(2);
+                var latitudeString = Cesium.Math.toDegrees(cartographic.latitude).toFixed(2);
+
+                entity.position = cartesian;
+                entity.label.show = true;
+                entity.label.text =
+                    'Lon: ' + ('   ' + longitudeString).slice(-7) + '\u00B0' +
+                    '\nLat: ' + ('   ' + latitudeString).slice(-7) + '\u00B0';
+            } else {
+                entity.label.show = false;
+            }
+        }, Cesium.ScreenSpaceEventType.MOUSE_MOVE);
+    }
+
+    function reset(){
+        location.reload();
+/*
+        var ecvs = document.getElementById("ecvs");
+        var networks = document.getElementById("networks");
+        var featuretypes = document.getElementById("featuretypes");
+
+        var mm_metadata = document.getElementById("mm_metadata");
+        var mm_documentation = document.getElementById("mm_documentation");
+        var mm_uncertainty = document.getElementById("mm_uncertainty");
+        var mm_public = document.getElementById("mm_public");
+        var mm_sustainability = document.getElementById("mm_sustainability");
+
+        var weatherSatellites = document.getElementById("weatherSatellites");
+        var spaceAndEarthScienceSatellites = document.getElementById("spaceAndEarthScienceSatellites");
+
+        var date_timepicker_start = document.getElementById("date_timepicker_start");
+        var date_timepicker_end = document.getElementById("date_timepicker_end");
+
+        ecvs.selectedIndex = 0;
+        networks.selectedIndex = 0;
+        featuretypes.selectedIndex = 0;
+
+        mm_metadata.selectedIndex = 0;
+        mm_documentation.selectedIndex = 0;
+        mm_uncertainty.selectedIndex = 0;
+        mm_public.selectedIndex = 0;
+        mm_sustainability.selectedIndex = 0;
+
+        weatherSatellites.selectedIndex = 0;
+        spaceAndEarthScienceSatellites.selectedIndex = 0;
+
+        date_timepicker_start.value = '';
+        date_timepicker_end.value = '';
+
+        viewer.camera.flyHome(0);
+        viewer.entities.removeAll();
+
+        handler = handler && handler.destroy();
+
+        applyFilter(false);
+        */
+    }
+
+    function applyFilter(resetFilter, ignoreUrlParams){
+        if (typeof intervalFootprint_Weather != 'undefined'){
+            clearInterval(intervalFootprint_Weather);
+        }
+        if (typeof intervalFootprint_Science != 'undefined'){
+            clearInterval(intervalFootprint_Science);
+        }
+
+        viewer.dataSources.removeAll();
+        viewer.entities.removeAll();
+
+        if (resetFilter){
+            var networks = document.getElementById("networks");
+            var featuretypes = document.getElementById("featuretypes");
+
+            networks.selectedIndex = 0;
+            featuretypes.selectedIndex = 0;
+        }
+
+        var filter = getFilter(ignoreUrlParams);
+
+        if (filter != ''){
+            var url = baseURL + baseURLFilter + filter;
+
+            var baseData = Cesium.GeoJsonDataSource.load(url);
+
+            baseData.then(function(dataSource){
+                viewer.dataSources.add(dataSource);
+
+                //Get the array of entities
+                var entities = dataSource.entities.values;
+
+                for (var i = 0; i < entities.length; i++) {
+                    var entity = entities[i];
+                    entity.billboard.image = 'https://cdn3.iconfinder.com/data/icons/softwaredemo/PNG/16x16/Circle_Blue.png';
+                    //entity.billboard.image = 'img/bullet_red.png';
+                    //entity.billboard.image = 'img/bullet_blue.png';
+		    //entity.billboard.image = 'img/bullet_yellow.png';
+                }
+            });
+        }
+
+        var setVisibility = false;
+
+        var dateStart = $('#date_timepicker_start').datetimepicker('getValue');
+        var dateEnd = $('#date_timepicker_end').datetimepicker('getValue');
+
+        dateStart = checkDateStart(dateStart);
+        dateEnd = checkDateEnd(dateStart, dateEnd);
+
+        //update the dates
+        $('#date_timepicker_start').val(getDateString(dateStart));
+        $('#date_timepicker_end').val(getDateString(dateEnd));
+
+        //Weather satellites
+        var weatherSatellites = document.getElementById("weatherSatellites");
+        var satelliteWeatherInstrumentsList = document.getElementById("satelliteWeatherInstrumentsList");
+        if (weatherSatellites != null) {
+            var ixWeatherSatellite = weatherSatellites.selectedIndex;
+
+            if (ixWeatherSatellite > 0){
+                var idWeatherSatellites = weatherSatellites.options[ixWeatherSatellite].value;
+
+                showSatellite(idWeatherSatellites,dateStart,dateEnd);
+
+                //setHiddenSatelliteButtons(false);
+                document.getElementById('satelliteButtons').style.display = 'block';
+                document.getElementById('satelliteWeatherInstrumentsList').style.display = 'block';
+
+                setVisibility = true;
+            }
+            else
+            {
+                //setHiddenSatelliteButtons(true);
+                document.getElementById('satelliteButtons').style.display = 'none';
+                document.getElementById('satelliteWeatherInstrumentsList').style.display = 'none';
+            }
+        }
+
+        sleep(500);
+
+        //Space And Earth Science satellites
+        var spaceAndEarthScienceSatellites = document.getElementById("spaceAndEarthScienceSatellites");
+        var satelliteSpaceAndEarthScienceInstrumentsList = document.getElementById("satelliteSpaceAndEarthScienceInstrumentsList");
+        if (spaceAndEarthScienceSatellites != null) {
+            var ixSpaceAndEarthScience = spaceAndEarthScienceSatellites.selectedIndex;
+
+            if (ixSpaceAndEarthScience > 0){
+                var idSpaceAndEarthScience = spaceAndEarthScienceSatellites.options[ixSpaceAndEarthScience].value;
+
+                showSatellite(idSpaceAndEarthScience,dateStart,dateEnd);
+
+                //setHiddenSatelliteButtons(false);
+                document.getElementById('satelliteButtons').style.display = 'block';
+                document.getElementById('satelliteSpaceAndEarthScienceInstrumentsList').style.display = 'block';
+            }
+            else
+            {
+                document.getElementById('satelliteSpaceAndEarthScienceInstrumentsList').style.display = 'none';
+
+                if (!setVisibility){
+                    document.getElementById('satelliteButtons').style.display = 'none';
+                    //setHiddenSatelliteButtons(true);
+                }
+            }
+        } else {
+            //setHiddenSatelliteButtons(true);
+            document.getElementById('satelliteButtons').style.display = 'none';
+            document.getElementById('satelliteSpaceAndEarthScienceInstrumentsList').style.display = 'none';
+        }
+
+        loadFilters(ignoreUrlParams);
+    }
+
+    function checkDateStart(dateStart){
+        var dateOutput = new Date();
+
+        if (dateStart != null){
+            try{
+                if (dateStart instanceof Date){
+                    dateOutput = dateStart;
+                } else {
+                    dateOutput.setDate(dateStart.getDate());
+                }
+            } catch (err) {}
+        }
+
+        dateOutput.setHours(0);
+        dateOutput.setMinutes(0);
+        dateOutput.setSeconds(0);
+
+        return dateOutput;
+    }
+
+    function checkDateEnd(dateStart, dateEnd){
+        if (dateEnd != null){
+            try {
+                dateEnd.getDate();
+            } catch (err) {
+                dateEnd = null;
+            }
+        }
+
+        if (dateEnd == null){
+            dateEnd = new Date();
+
+            if (dateStart == null){
+                dateStart = checkDateStart(dateStart);
+            }
+
+            dateEnd.setDate(dateStart.getDate() + 1);
+
+            dateEnd.setHours(0);
+            dateEnd.setMinutes(0);
+            dateEnd.setSeconds(0);
+        }
+
+        return dateEnd;
+    }
+
+    function getDateString(dateInput){
+        var day = dateInput.getDate();
+        var month = dateInput.getMonth() + 1;
+        var year = dateInput.getFullYear();
+        var hours = dateInput.getHours();
+        var minutes = dateInput.getMinutes();
+        var seconds = dateInput.getSeconds();
+
+        return year
+            + '/' + n(month)
+            + '/' + n(day)
+            + ' ' + n(hours)
+            + ':' + n(minutes);
+    }
+
+    function n(n){
+        return n > 9 ? "" + n: "0" + n;
+    }
+
+    function sleep(milliseconds) {
+        var currentTime = new Date().getTime();
+
+        while (currentTime + milliseconds >= new Date().getTime()) {}
+    }
+
+
+
+</script>
+</html>

@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://def.wmo.int/wigosobs/2015" xmlns:wigos="http://def.wmo.int/wigosobs/2015" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:gmlexr="http://www.opengis.net/gml/3.3/exr" xmlns:gmd="http://www.isotc211.org/2005/gmd">
+	<xs:import namespace="http://www.isotc211.org/2005/gmd" schemaLocation="http://schemas.opengis.net/iso/19139/20070417/gmd/gmd.xsd"/>
+	<xs:import namespace="http://www.opengis.net/gml/3.3/exr" schemaLocation="http://schemas.opengis.net/gml/3.3/extdEncRule.xsd"/>
+	<xs:import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+	<xs:element name="ControlCheckReport" type="wigos:ControlCheckReportType" substitutionGroup="wigos:LogEntry">
+		<xs:annotation>
+			<xs:documentation>A ControlCheckReport describes a calibration type event. E.g. instrument was re-calibrated.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="ControlCheckReportType">
+		<xs:complexContent>
+			<xs:extension base="wigos:LogEntryType">
+				<xs:sequence>
+					<xs:element name="checkLocation" type="gml:ReferenceType" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>5-08 Location of sensor when check was performed (e.g. in-situ, offsite etc.) From codelist ControlCheckLocationType.</xs:documentation>
+							<xs:appinfo>
+								<gmlexr:targetCodeList>ControlCheckLocationType</gmlexr:targetCodeList>
+							</xs:appinfo>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="periodOfValidity" type="xs:duration" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>5-08 period of validity of the control check (e.g. 4 years)</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="controlCheckResult" type="gml:ReferenceType" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>5-08 Result of the control check, from InstrumentControlResultType codelist</xs:documentation>
+							<xs:appinfo>
+								<gmlexr:targetCodeList>InstrumentControlResultType</gmlexr:targetCodeList>
+							</xs:appinfo>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="standardType" type="gml:ReferenceType" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>5-08 Type of the Standard used. From the StandardType code list.</xs:documentation>
+							<xs:appinfo>
+								<gmlexr:targetCodeList>StandardType</gmlexr:targetCodeList>
+							</xs:appinfo>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="standardName" type="xs:string" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>5-08 Nameof the Standard used.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="withinVerificationLimit" type="xs:boolean" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>5-08 Was the instrument found to be within verification limits (True if yes, False if no)</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="alternateURI" type="xs:anyURI" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>5-08 Alternatively the summary of the control check may be provided via a URI that resolves to a document containing this information.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ControlCheckReportPropertyType">
+		<xs:sequence minOccurs="0">
+			<xs:element ref="wigos:ControlCheckReport"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<xs:attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</xs:complexType>
+	<xs:element name="EventReport" type="wigos:EventReportType" substitutionGroup="wigos:LogEntry"/>
+	<xs:complexType name="EventReportType">
+		<xs:complexContent>
+			<xs:extension base="wigos:LogEntryType">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="EventReportPropertyType">
+		<xs:sequence minOccurs="0">
+			<xs:element ref="wigos:EventReport"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<xs:attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</xs:complexType>
+	<xs:element name="FacilityLog" type="wigos:FacilityLogType" substitutionGroup="wigos:Log">
+		<xs:annotation>
+			<xs:documentation>The purpose of the FacilityLog is to capture notable events and extra information about the facility/site or its surroundings.. (4-04 / 4-05).</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="FacilityLogType">
+		<xs:complexContent>
+			<xs:extension base="wigos:LogType">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="FacilityLogPropertyType">
+		<xs:sequence minOccurs="0">
+			<xs:element ref="wigos:FacilityLog"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<xs:attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</xs:complexType>
+	<xs:element name="LogEntry" type="wigos:LogEntryType" substitutionGroup="gml:AbstractFeature" abstract="true">
+		<xs:annotation>
+			<xs:documentation>At the abstract level a log entry contains the time, author and descriptions of the activity or event being logged. This class is specialized further to provide more specific log entry types where needed.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="LogEntryType" abstract="true">
+		<xs:complexContent>
+			<xs:extension base="gml:AbstractFeatureType">
+				<xs:sequence>
+					<xs:element name="datetime" type="xs:dateTime">
+						<xs:annotation>
+							<xs:documentation>Date and time of the event being logged</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="author" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Author of the log entry.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="description" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Description of the log entry</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="additionalComments" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Additional comments about the log entry.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="attachment" type="xs:anyURI" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Link to additional documents, photos etc. about the event being logged.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="LogEntryPropertyType">
+		<xs:sequence minOccurs="0">
+			<xs:element ref="wigos:LogEntry"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<xs:attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</xs:complexType>
+	<xs:element name="MaintenanceReport" type="wigos:MaintenanceReportType" substitutionGroup="wigos:LogEntry">
+		<xs:annotation>
+			<xs:documentation>5-13 Description of maintenance (actual) performed on instrument.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="MaintenanceReportType">
+		<xs:complexContent>
+			<xs:extension base="wigos:LogEntryType">
+				<xs:sequence>
+					<xs:element name="maintenanceParty">
+						<xs:annotation>
+							<xs:documentation>5-11 Details of who performed the maintenance (individual or organisation).</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:complexContent>
+								<xs:extension base="gml:AbstractMetadataPropertyType">
+									<xs:sequence>
+										<xs:element ref="gmd:CI_ResponsibleParty"/>
+									</xs:sequence>
+								</xs:extension>
+							</xs:complexContent>
+						</xs:complexType>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="MaintenanceReportPropertyType">
+		<xs:sequence minOccurs="0">
+			<xs:element ref="wigos:MaintenanceReport"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<xs:attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</xs:complexType>
+	<xs:element name="Log" type="wigos:LogType" substitutionGroup="gml:AbstractFeature" abstract="true">
+		<xs:annotation>
+			<xs:documentation>At the abstract level a log is simply a record of log entries. The requirements for a log may depend on the type of log it is therefore specialized logs exist for specific types of log (such as ControlCheckReports, MaintenanceReports and EventReports).</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="LogType" abstract="true">
+		<xs:complexContent>
+			<xs:extension base="gml:AbstractFeatureType">
+				<xs:sequence>
+					<xs:element name="logEntry" minOccurs="0" maxOccurs="unbounded">
+						<xs:complexType>
+							<xs:complexContent>
+								<xs:extension base="gml:AbstractMemberType">
+									<xs:sequence>
+										<xs:element ref="wigos:LogEntry"/>
+									</xs:sequence>
+								</xs:extension>
+							</xs:complexContent>
+						</xs:complexType>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="LogPropertyType">
+		<xs:sequence minOccurs="0">
+			<xs:element ref="wigos:Log"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<xs:attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</xs:complexType>
+	<xs:element name="EquipmentLog" type="wigos:EquipmentLogType" substitutionGroup="wigos:Log">
+		<xs:annotation>
+			<xs:documentation>5-13 Description of maintenance (actual) performed on instrument/sensor.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="EquipmentLogType">
+		<xs:complexContent>
+			<xs:extension base="wigos:LogType">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="EquipmentLogPropertyType">
+		<xs:sequence minOccurs="0">
+			<xs:element ref="wigos:EquipmentLog"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<xs:attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</xs:complexType>
+</xs:schema>

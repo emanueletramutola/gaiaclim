@@ -1,0 +1,148 @@
+#filterNetwork {
+background: rgba(191, 191, 191, 0.4);
+}
+
+.title_bar{
+    border-radius: 0.7em;
+    border: 0.10em solid lightgrey;
+    padding: 0.5em;
+    height: auto;
+    background: rgba(51, 122, 183, 0.2);
+}
+
+span.lblTitleFilter {
+    margin: 0em;
+    padding: 0.20em;
+    background-color: transparent;
+    font-size: 1.1em;
+}
+
+#filterECVbody, #filterSatelliteBody{
+    margin-top: 1em;
+}
+
+#filtersBox {
+    position: absolute;
+    top: 0.4em;
+    left: 0.7em;
+    z-index: 1;
+}
+
+.filters {
+    border-radius: 1.5em;
+    border: 0.15em solid #000080;
+    padding: 0.75em;
+    width: 21em;
+    background: rgba(191, 191, 191, 0.4);
+    margin-bottom: 0.5em;
+    display: block;
+}
+
+.label-default {
+    background: rgba(191, 191, 191, 0.4);
+}
+
+.badge{
+    background-color: #337ab7;
+    margin-bottom: 0.5em;
+}
+
+#dateFilter{
+    border-radius: 0.8em;
+    border: 0.1em solid #000080;
+    padding: 0.4em;
+    margin-bottom: 0.6em;
+    background: rgba(0, 0, 128, 0.3);
+    text-align: left;
+}
+
+#btnReset{
+    margin-top: 0.35em;
+}
+
+.lblMM{
+    margin-top: 0.5em;
+    margin-bottom: 0em;
+    padding-bottom: 0em;
+}
+
+span.lblMM{
+    background: rgba(0, 0, 128, 0.3);
+}
+
+.ddlMM{
+    margin-bottom: 0.15em;
+}
+
+#date_timepicker_start, #date_timepicker_end {
+    display: inline;
+    width: 11em;
+    text-align: center;
+}
+
+#date_timepicker_start{
+    margin-left: 0.8em;
+}
+#date_timepicker_end{
+    margin-left: 1.7em;
+}
+#goButton{
+    margin-left:0.8em;
+}
+
+#weatherSatelliteInstruments {
+    padding-top: 0em;
+    padding-bottom: 0em;
+    height: 1.5em;
+    width: 15.5em;
+    float: right;
+}
+
+#spaceAndEarthScienceSatelliteInstruments{
+    padding-top: 0em;
+    padding-bottom: 0em;
+    height: 1.5em;
+    width: 15.5em;
+    float: right;
+}
+
+#satelliteWeatherInstrumentsList{
+    margin-bottom: 1.5em;
+}
+
+.instrumentList{
+    min-height: 1.5em;
+}
+
+.lblInstruments{
+    float: left;
+    margin-left: 0.5em;
+    margin-top: 0.2em;
+}
+
+#satelliteButtons{
+    height: 2.2em;
+}
+
+#footprintButton{
+    /*margin-top: 0.6em;*/
+    float: right;
+}
+
+#swathButton{
+    /*margin-top: 0.6em;*/
+    float: left;
+}
+
+.clear {
+    clear: both;
+}
+
+#logoIMAA{
+    position: absolute;
+    /*left: 170px;*/
+    right: 0px;
+    bottom: 30px;
+    z-index: 1;
+}
+

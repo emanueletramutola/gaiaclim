@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <xs:complexType name="PurposeOfObservation_Type">
+        <xs:annotation>
+            <xs:documentation>
+                Specifies the main application area(s) of the observation and the observing programme(s) and networks
+                the observation is affiliated to.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="applicationArea" type="ApplicationArea_Type"/>
+            <xs:element name="programmeNetworkAffiliation" type="ProgrammeNetworkAffiliation_Type"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:simpleType name="ApplicationArea_Type">
+        <xs:restriction base="xs:string">
+            <xs:annotation>
+                <xs:documentation>
+                    Context within, or intended application(s) for which the observation is primarily made or which
+                    has/have the most stringent requirements.
+
+                    NOTE:
+                    Many observations serve more than one
+                    purpose, meeting the requirements of
+                    various applications areas. In such
+                    cases, the application area for which the
+                    station was originally established should
+                    be listed first.
+                </xs:documentation>
+            </xs:annotation>
+            <xs:enumeration value="Global numerical weather prediction (GNWP)"/>
+            <xs:enumeration value="High-resolution numerical weather prediction (HRNWP)"/>
+            <xs:enumeration value="Nowcasting and very short range forecasting (NVSRF)"/>
+            <xs:enumeration value="Seasonal and inter-annual forecasting (SIAF)"/>
+            <xs:enumeration value="General weather forecasting"/>
+            <xs:enumeration value="Aeronautical meteorology"/>
+            <xs:enumeration value="Ocean applications"/>
+            <xs:enumeration value="Agricultural meteorology"/>
+            <xs:enumeration value="Hydrology"/>
+            <xs:enumeration value="Climate monitoring (as undertaken through the Global Climate Observing System, GCOS)"/>
+            <xs:enumeration value="Climate applications"/>
+            <xs:enumeration value="Space weather"/>
+            <xs:enumeration value="Cryosphere applications"/>
+            <xs:enumeration value="Energy sector"/>
+            <xs:enumeration value="Transportation sector"/>
+            <xs:enumeration value="Health sector"/>
+            <xs:enumeration value="Terrestrial ecology"/>
+            <xs:enumeration value="Operational air quality forecasting"/>
+            <xs:enumeration value="Atmospheric composition forecasting"/>
+            <xs:enumeration value="Atmospheric composition monitoring and analysis"/>
+            <xs:enumeration value="Large urban complexes"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="ProgrammeNetworkAffiliation_Type">
+        <xs:annotation>
+            <xs:documentation>
+                The global, regional or national program/network(s) that the station/platform is associated with.
+
+                EXAMPLES:
+                GUAN, AMDAR, GAW, RBSN, WHOS,
+                etc. (full names to be referenced in code
+                table)
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="name" type="xs:string"></xs:element>
+            <xs:element name="definition" type="xs:string"></xs:element>
+            <xs:element name="sponsorContributing" type="xs:string" minOccurs="0"></xs:element>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>
